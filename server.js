@@ -27,6 +27,11 @@ mongoClient.connect((err, client)=>{
 			}
 		});
     });
+	app.get('/countries', (req, res)=>{
+        co.find({}, {name:1, idc:1, description:1}).toArray((err, results)=>{
+            res.render("countries", {val:results});
+		});
+    });
 	app.post('/addcountry', jsonParser,(req, res)=>{
 		let country = req.body || false;
 		if(!country){
