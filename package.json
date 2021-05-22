@@ -4,13 +4,15 @@
   "description": "Map Of Virtual Countries",
   "main": "server.js",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "mongodb": "^3.6.8",
     "socket.io": "^4.0.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 start server.js && pm2 monit"
+    "start": "node server.js"
   },
   "author": "artegoser",
   "license": "MIT"
