@@ -26,16 +26,15 @@
             %><div class="row text-center"><%
             for(let i = 0; i<val.length; i++){
                     %>
-                     <div class="col">
+                        
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" style="height: 18vh" src= <%=val[i].img%> alt="Card image cap">
+                            <img class="card-img-top" style="height: 170px" src= <%=val[i].img%> alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title"><%=val[i].name%></h5>
                                 <p class="card-text"><%=val[i].description.slice(0, 70)+"..."%></p>
                                 <a href= "countries/<%=val[i].idc%>" class="btn btn-primary">Подробнее</a>
                             </div>
                         </div>
-                     </div>
                     <%
             }
             %></div><%  
