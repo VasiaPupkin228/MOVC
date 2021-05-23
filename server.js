@@ -1,4 +1,3 @@
-const fs = require('fs')
 const express = require("express");
 const sha3 = require('js-sha3').sha3_224;
 const { MongoClient } = require("mongodb");
@@ -7,7 +6,7 @@ const jsonParser = express.json();
 
 app.set("view engine", "ejs");
 app.set("views", `${process.cwd()}/views`)
-app.use("/map",express.static(`${process.cwd()}/public`));
+app.use("/public",express.static(`${process.cwd()}/public`));
 
 // const io = require('socket.io')(server);
 
@@ -18,6 +17,9 @@ const mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
 mongoClient.connect((err, client)=>{
     let db = client.db("movc");
 	let co = db.collection("countries");
+	app.get("/", (req,res)=>{
+		res.redirect("/countries")
+	})
 	app.get('/countries/:country', (req, res)=>{
         co.findOne({idc: req.params.country}, (err, val)=>{
 			if(val) res.render("country", {country: val});
@@ -33,6 +35,9 @@ mongoClient.connect((err, client)=>{
 				res.render("countries", {val:results, count:v});
 			});
 		});
+    });
+	app.get('/map', (req, res)=>{
+        res.render("map");
     });
 	app.post('/addcountry', jsonParser,(req, res)=>{
 		let country = req.body || false;
@@ -61,8 +66,12 @@ mongoClient.connect((err, client)=>{
 			res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
 			res.end("Взломать захотел?")
 		}
+		
     });
+	app.use((req, res, next)=>{
+		res.status(404);
+		res.render("notfound")
+	});
 });
-
 
 app.listen(PORT, ()=>{ console.log(`Listening https on ${PORT}`)});
