@@ -32,10 +32,10 @@
             for(let i = 0; i<val.length; i++){
                 %>
                     <div class="row" style="padding: 5px;">
-                        <div class="col-md-6 col-sm-12">
-                            <img class="bordert w-100" src="<%=val[i].img%>" alt="Card image cap">
+                        <div class="col-md-6 col-sm-12" style="padding: 0px;">
+                            <img class="borderl w-100" src="<%=val[i].img%>" alt="Card image cap">
                         </div>
-                        <div class="col-md-6 col-sm-12 bordert" style="background-color: rgb(231, 231, 231)">
+                        <div class="col-md-6 col-sm-12 borderr" style="background-color: rgb(231, 231, 231)">
                             <h5 class="card-title"><%=val[i].name%></h5>
                             <p class="card-text"><%=val[i].description.slice(0, 500)+"..."%></p>
                             <a href= "countries/<%=val[i].idc%>" class="btn btn-primary bordert">Подробнее</a>
