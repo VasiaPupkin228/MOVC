@@ -26,3 +26,13 @@
     border-radius: 0px 0px 20px 20px;
   }
 }
+
+svg{
+  transition: .5s;
+  fill: rgb(21, 197, 21);
+}
+
+svg:hover{
+  transition: .5s;
+  fill: rgb(21, 103, 197);
+}
