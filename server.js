@@ -2,13 +2,12 @@ const express = require("express");
 const sha3 = require('js-sha3').sha3_224;
 const { MongoClient } = require("mongodb");
 const app = express();
-const jsonParser = express.json();
-
 app.set("view engine", "ejs");
 app.set("views", `${process.cwd()}/views`)
-app.use("/public",express.static(`${process.cwd()}/public`));
 
-// const io = require('socket.io')(server);
+app.use("/public",express.static(`${process.cwd()}/public`));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 
 const PORT = process.env.PORT || 80;
 const PASS = process.env.PASS || require("./secure.json").pass;
@@ -44,14 +43,24 @@ mongoClient.connect((err, client)=>{
         	res.render("pages/erth2", {count:v});
 		});
     });
-	app.post('/addcountry', jsonParser,(req, res)=>{
+	app.get("/admin/addcountry", (req,res)=>{
+		res.render("pages/addcountry");
+	});
+	app.post('/addcountry', (req, res)=>{
 		let country = req.body || false;
 		if(!country){
 			res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
 			res.end("Нет тела запроса");
 			return;
 		} 
-		if(sha3(req.query.pass) == PASS){
+		let pass = req.query.pass || country.pass;
+		country.pass = "";
+		if(country.verified) country.verified = true;
+		country = filter(country, (val)=>{
+			return val !== "";
+		});
+		console.log(country);
+		if(sha3(pass) == PASS){
 			co.updateOne({idc: country.idc},{$set: country}, {upsert:true},
 				(err)=>{
 					if (err){
@@ -61,15 +70,12 @@ mongoClient.connect((err, client)=>{
 							err:`${err}`
 						}));
 					} else{
-						res.end(JSON.stringify({
-							code:0,
-							message:"Succes added country"
-						}));
+						res.redirect(`/countries/${country.idc}`);
 					}
 				});
 		} else{
 			res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-			res.end("Взломать захотел?")
+			res.end("Неправильный пароль")
 		}
 		
     });
@@ -80,3 +86,9 @@ mongoClient.connect((err, client)=>{
 });
 
 app.listen(PORT, ()=>{ console.log(`Listening https on ${PORT}`)});
+
+function filter( obj, filtercheck) {
+    let result = {}; 
+    Object.keys(obj).forEach((key) => { if (filtercheck(obj[key])) result[key] = obj[key]; })
+    return result;
+};
