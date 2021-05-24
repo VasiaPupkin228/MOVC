@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include("../components/bootstrap") %> 
+        <%- include("../components/head") %> 
+        <title>Виртуальные государства</title>
+    </head>
+    <body>
+        <%- include("../components/menu") %> 
+        <div class="container borderc" style="background-color: #f8f9fa;">
+            <div class="alert alert-dark text-center" style="border-radius: 20px; padding: 5px;" role="alert">
+                Всего государств в индексации <%= count %> 
+            </div>
+            <%
+                for(let i = 0; i<val.length; i++){
+                    %>
+                        <%- include("../components/country-card", {i:i}) %>
+                    <%
+                }  
+            %>
+        </div>
+    </body>
+</html>

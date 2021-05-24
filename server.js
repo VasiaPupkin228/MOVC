@@ -22,7 +22,7 @@ mongoClient.connect((err, client)=>{
 	})
 	app.get('/countries/:country', (req, res)=>{
         co.findOne({idc: req.params.country}, (err, val)=>{
-			if(val) res.render("country", {country: val});
+			if(val) res.render("pages/country", {country: val});
 			else {
 				res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
 				res.end("Государство не найдено")
@@ -32,12 +32,15 @@ mongoClient.connect((err, client)=>{
 	app.get('/countries', (req, res)=>{
         co.find({}, {name:1, idc:1, description:1}).toArray((err, results)=>{
 			co.countDocuments((_,v)=>{
-				res.render("countries", {val:results, count:v});
+				res.render("pages/countries", {val:results, count:v});
 			});
 		});
     });
 	app.get('/map', (req, res)=>{
-        res.render("map");
+        res.render("pages/map");
+    });
+	app.get('/erth2', (req, res)=>{
+        res.render("pages/erth2");
     });
 	app.post('/addcountry', jsonParser,(req, res)=>{
 		let country = req.body || false;
@@ -70,7 +73,7 @@ mongoClient.connect((err, client)=>{
     });
 	app.use((req, res, next)=>{
 		res.status(404);
-		res.render("notfound")
+		res.render("pages/notfound")
 	});
 });
 
