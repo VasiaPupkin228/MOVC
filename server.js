@@ -40,7 +40,9 @@ mongoClient.connect((err, client)=>{
         res.render("pages/map");
     });
 	app.get('/erth2', (req, res)=>{
-        res.render("pages/erth2");
+		co.find({verified:true}).count((_,v)=>{
+        	res.render("pages/erth2", {count:v});
+		});
     });
 	app.post('/addcountry', jsonParser,(req, res)=>{
 		let country = req.body || false;
