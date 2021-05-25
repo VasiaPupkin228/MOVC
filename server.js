@@ -34,7 +34,7 @@ mongoClient.connect((err, client)=>{
 		});
     });
 	app.get('/countries', (req, res)=>{
-        co.find({}, {name:1, idc:1, description:1}).toArray((err, results)=>{
+        co.find({}, {name:1, idc:1, description:1}).sort({rank:-1}).toArray((err, results)=>{
 			co.countDocuments((_,v)=>{
 				res.render("pages/countries", {val:results, count:v});
 			});
@@ -120,9 +120,12 @@ mongoClient.connect((err, client)=>{
 		} 
 		let pass = req.query.pass || country.pass;
 		country.pass = "";
+		
 		if(country.verified==="half") {}
 		else if(country.verified) country.verified = true;
 		else country.verified = false;
+
+		if(country.rank) country.rank = parseInt(country.rank);
 
 		country = filter(country, (val)=>{
 			return val !== "";

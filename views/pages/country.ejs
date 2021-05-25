@@ -19,7 +19,7 @@
                     <b><%= country.name %></b> 
                     <% 
                       if(country.verified===true){
-                              %><a href="/erth2"><%-include("../component/icons/mark")%></a><%
+                          %><a href="/erth2"><%-include("../components/icons/mark")%></a><%
                       } else if(country.verified==="half"){
                           %><a href="/erth2"><%-include("../components/icons/question")%></a><%
                       } else{
@@ -34,6 +34,13 @@
               <div class="row">
                   <span><b>Тип правления:</b> <%= country.type %></span>
               </div>
+              <%
+                if(country.rank){%>
+                  <div class="row">
+                      <span><b>Рейтинг:</b> <%= country.rank %></span>
+                  </div>
+                <%}
+              %>
             </div>
           </div>
           <div class="row bordert" style="background-color: #e4e4e4; margin-top: 5px;">
