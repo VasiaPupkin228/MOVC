@@ -113,9 +113,9 @@ mongoClient.connect((err, client)=>{
 	});
 	app.post('/addcountry', (req, res)=>{
 		let country = req.body || false;
-		if(!country){
+		if(!country||!country.idc){
 			res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-			res.end("Нет тела запроса");
+			res.end("Нет тела запроса, или не указан id страны");
 			return;
 		} 
 		let pass = req.query.pass || country.pass;
@@ -123,7 +123,7 @@ mongoClient.connect((err, client)=>{
 		if(country.verified==="half") {}
 		else if(country.verified) country.verified = true;
 		else country.verified = false;
-		
+
 		country = filter(country, (val)=>{
 			return val !== "";
 		});
