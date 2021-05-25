@@ -4,16 +4,8 @@
     </div>
     <div class="col-md-6 col-sm-12 borderr" style="background-color: rgb(231, 231, 231)">
         <h5 class="card-title">
-            <%=val[i].name%>
-            <% 
-                if(val[i].verified===true){
-                        %><a href="/erth2"><%-include("icons/mark")%></a><%
-                } else if(val[i].verified==="half"){
-                    %><a href="/erth2"><%-include("icons/question")%></a><%
-                } else{
-                    %><a href="/erth2"><%-include("icons/cross")%></a><%
-                }
-            %>
+            <%=val[i].name%> 
+            <%- include("../components/erth2mark" , {country:val[i]}) %>
         </h5>
         <p class="card-text"><%=val[i].description.slice(0, 500)+"..."%></p>
         <a href= "/pending-countries/<%=val[i].idc%>" class="btn btn-primary bordert mb-2">Подробнее</a>

@@ -1,0 +1,9 @@
+<% 
+    if(country.verified===true){
+            %><a href="/erth2#marks"><%-include("../components/icons/mark")%></a><%
+    } else if(country.verified==="half"){
+        %><a href="/erth2#marks"><%-include("../components/icons/question")%></a><%
+    } else{
+        %><a href="/erth2#marks"><%-include("../components/icons/cross")%></a><%
+    }
+%>

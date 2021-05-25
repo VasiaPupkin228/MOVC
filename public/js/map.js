@@ -5,9 +5,6 @@ window.onload = ()=>{
         height: document.documentElement.scrollHeight-document.getElementById("menu").scrollHeight,
         physics: {
             default: 'arcade',
-            arcade: {
-                gravity: { y: getRandomInt(200)}
-            }
         },
         scene: {
             preload: preload,
@@ -46,7 +43,7 @@ window.onload = ()=>{
 
         
 
-        logo.setVelocity(getRandomInt(500), getRandomInt(500));
+        logo.setVelocity(400, 500);
         logo.setBounce(1, 1);
         logo.setCollideWorldBounds(true);
 

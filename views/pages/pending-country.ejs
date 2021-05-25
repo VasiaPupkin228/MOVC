@@ -20,15 +20,7 @@
             <div class="row">
                 <span>
                   <b><%= country.name %></b> 
-                  <% 
-                      if(country.verified===true){
-                              %><a href="/erth2"><%-include("../components/icons/mark")%></a><%
-                      } else if(country.verified==="half"){
-                          %><a href="/erth2"><%-include("../components/icons/question")%></a><%
-                      } else{
-                          %><a href="/erth2"><%-include("../components/icons/cross")%></a><%
-                      }
-                    %>
+                  <%- include("../components/erth2mark") %>
                 </span>
             </div>
             <div class="row">
