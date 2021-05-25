@@ -2,10 +2,12 @@ const express = require("express");
 const sha3 = require('js-sha3').sha3_224;
 const { MongoClient } = require("mongodb");
 const app = express();
+const favicon = require('serve-favicon');
 app.set("view engine", "ejs");
-app.set("views", `${process.cwd()}/views`)
+app.set("views", `${__dirname}/views`)
 
-app.use("/public",express.static(`${process.cwd()}/public`));
+app.use("/public",express.static(`${__dirname}/public`));
+app.use(favicon(`${__dirname}/public/favicon.ico`));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
@@ -41,7 +43,7 @@ mongoClient.connect((err, client)=>{
 
 	app.get('/pending-countries/:country', (req, res)=>{
         pending.findOne({idc: req.params.country}, (err, val)=>{
-			if(val) res.render("pages/country", {country: val});
+			if(val) res.render("pages/pending-country", {country: val});
 			else {
 				res.render("pages/notfound")
 			}
