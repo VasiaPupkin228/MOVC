@@ -9,12 +9,12 @@
         <%- include("../components/menu") %> 
         <div class="container borderc" style="background-color: #f8f9fa;">
             <div class="alert alert-dark text-center" style="border-radius: 20px; padding: 5px;" role="alert">
-                Всего государств в индексации <%= count %> <a class="text-succes" href="/req-country">Заявка</a>
+                Государств ждущих подтверждения <%= count %> 
             </div>
             <%
                 for(let i = 0; i<val.length; i++){
                     %>
-                        <%- include("../components/country-card", {i:i}) %>
+                        <%- include("../components/pending-country-card", {i:i}) %>
                     <%
                 }  
             %>

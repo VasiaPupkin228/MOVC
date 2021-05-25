@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<% 
+let options = [
+    {
+        title:"Пароль админа",
+        id:"pass"
+    },
+    {
+        title:"id страны",
+        help:"Использовать айди со страницы /pending-countries",
+        id:"idc"
+    }
+]
+%> 
+<html>
+    <head>
+        <%- include("../components/bootstrap") %> 
+        <%- include("../components/head") %> 
+        <title>Отклонить заявку государства</title>
+    </head>
+    <body>
+        <%- include("../components/menu") %>
+        <div class="container">
+            <form action="/deny-country" method="post">
+                <%
+                    for(let i=0; i<options.length; i++) {
+                        %>
+                        <div class="row m-5">
+                            <div class="col-lg-12"><label class="form-label"><%=options[i].title%></label></div>
+                            <div class="col-sm-12">
+                                <input type="text" name="<%=options[i].id%>" class="form-control">
+                        <%
+                                if(options[i].help) %><div class="form-text"><%=options[i].help%></div><%
+                        %>
+                            </div>
+                        </div>
+                        <%
+                    }
+                %>
+                <div class="row m-5">
+                    <input type="submit" value="Отклонить заявку" class="btn btn-danger">    
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

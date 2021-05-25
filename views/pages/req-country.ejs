@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<% 
+let options = [
+    {
+        title:"id страны",
+        help:"Можно использовать английские буквы и тире(-), напр: slingonia",
+        id:"idc"
+    },
+    {
+        title:"Имя страны",
+        id:"name"
+    },
+    {
+        title:"Ссылка на фото флага страны",
+        id:"img"
+    },
+    {
+        title:"Описание",
+        id:"description"
+    },
+    {
+        title:"Правитель",
+        id:"owner"
+    },
+    {
+        title:"Контакт правителя",
+        id:"contact"
+    },
+    {
+        title:"Дата основания",
+        id:"date"
+    },
+    {
+        title:"Сайт",
+        id:"site"
+    },
+    {
+        title:"Страница в вк",
+        id:"vk"
+    },
+    {
+        title:"Тип правления",
+        id:"type"
+    },
+    {
+        title:"Соответствие стандарту ERTH2",
+        help:"Если не соответствует оставить пустым, если соответствует вписать что угодно",
+        id:"verified"
+    }
+]
+%> 
+<html>
+    <head>
+        <%- include("../components/bootstrap") %> 
+        <%- include("../components/head") %> 
+        <title>Отправить заявку на добавление в индексирование государств</title>
+    </head>
+    <body>
+        <%- include("../components/menu") %>
+        <div class="container">
+            <form action="/addcountry" method="post">
+                <%
+                    for(let i=0; i<options.length; i++) {
+                        %>
+                        <div class="row m-5">
+                            <div class="col-lg-12"><label class="form-label"><%=options[i].title%></label></div>
+                            <div class="col-sm-12">
+                                <input type="text" name="<%=options[i].id%>" class="form-control">
+                        <%
+                                if(options[i].help) %><div class="form-text"><%=options[i].help%></div><%
+                        %>
+                            </div>
+                        </div>
+                        <%
+                    }
+                %>
+                <div class="row m-5">
+                    <input type="submit" value="Отправить" class="btn btn-dark">    
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

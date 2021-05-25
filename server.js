@@ -16,15 +16,18 @@ const mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
 mongoClient.connect((err, client)=>{
     let db = client.db("movc");
 	let co = db.collection("countries");
+	let pending = db.collection("pending-countries");
 	app.get("/", (req,res)=>{
 		res.redirect("/countries")
-	})
+	});
+	app.get("/req-country", (req, res)=>{
+		res.render("pages/req-country");
+	});
 	app.get('/countries/:country', (req, res)=>{
         co.findOne({idc: req.params.country}, (err, val)=>{
 			if(val) res.render("pages/country", {country: val});
 			else {
-				res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-				res.end("Государство не найдено")
+				res.render("pages/notfound")
 			}
 		});
     });
@@ -35,6 +38,23 @@ mongoClient.connect((err, client)=>{
 			});
 		});
     });
+
+	app.get('/pending-countries/:country', (req, res)=>{
+        pending.findOne({idc: req.params.country}, (err, val)=>{
+			if(val) res.render("pages/country", {country: val});
+			else {
+				res.render("pages/notfound")
+			}
+		});
+    });
+	app.get('/pending-countries', (req, res)=>{
+        pending.find({}, {name:1, idc:1, description:1}).toArray((err, results)=>{
+			pending.countDocuments((_,v)=>{
+				res.render("pages/pending-countries", {val:results, count:v});
+			});
+		});
+    });
+
 	app.get('/map', (req, res)=>{
         res.render("pages/map");
     });
@@ -43,8 +63,51 @@ mongoClient.connect((err, client)=>{
         	res.render("pages/erth2", {count:v});
 		});
     });
+	app.get("/admin", (req,res)=>{
+		res.render("pages/admin");
+	});
 	app.get("/admin/addcountry", (req,res)=>{
 		res.render("pages/addcountry");
+	});
+	app.get("/admin/approve-country", (req,res)=>{
+		res.render("pages/approve-country");
+	});
+	app.post("/approve-country", (req, res)=>{
+		let country = req.body || false;
+		if(!country){
+			res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+			res.end("Нет тела запроса");
+			return;
+		} 
+		let pass = req.query.pass || country.pass;
+		if(pass && sha3(pass) == PASS){
+			pending.findOne({idc:country.idc},(err, val)=>{
+				co.updateOne({idc: country.idc},{$set: val}, {upsert:true},
+				(err)=>{
+					if (err){
+						res.end(JSON.stringify({
+							code:2,
+							message:"Country is not added",
+							err:`${err}`
+						}));
+					} else{
+						pending.deleteOne({idc: country.idc}, (err)=>{
+							if (err){
+								res.end(JSON.stringify({
+									code:2,
+									message:"Country is not added",
+									err:`${err}`
+								}));
+							} else{
+								res.redirect(`/countries/${country.idc}`)
+							}
+						});
+					}
+				});
+			});
+		} else{
+			res.end("Hackerman bleat?");
+		}
 	});
 	app.post('/addcountry', (req, res)=>{
 		let country = req.body || false;
@@ -59,8 +122,7 @@ mongoClient.connect((err, client)=>{
 		country = filter(country, (val)=>{
 			return val !== "";
 		});
-		console.log(country);
-		if(sha3(pass) == PASS){
+		if(pass && sha3(pass) == PASS){
 			co.updateOne({idc: country.idc},{$set: country}, {upsert:true},
 				(err)=>{
 					if (err){
@@ -74,8 +136,17 @@ mongoClient.connect((err, client)=>{
 					}
 				});
 		} else{
-			res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-			res.end("Неправильный пароль")
+			pending.insertOne(country,()=>{
+				if (err){
+					res.end(JSON.stringify({
+						code:2,
+						message:"Country is not added",
+						err:`${err}`
+					}));
+				} else{
+					res.redirect(`/pending-countries/${country.idc}`);
+				}
+			});
 		}
 		
     });
