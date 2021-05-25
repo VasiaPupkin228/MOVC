@@ -120,7 +120,10 @@ mongoClient.connect((err, client)=>{
 		} 
 		let pass = req.query.pass || country.pass;
 		country.pass = "";
-		if(country.verified) country.verified = true;
+		if(country.verified==="half") {}
+		else if(country.verified) country.verified = true;
+		else country.verified = false;
+		
 		country = filter(country, (val)=>{
 			return val !== "";
 		});

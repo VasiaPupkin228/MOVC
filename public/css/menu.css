@@ -27,12 +27,32 @@
   }
 }
 
-svg{
+#mark{
   transition: .5s;
   fill: rgb(21, 197, 21);
 }
 
-svg:hover{
+#mark:hover{
   transition: .5s;
   fill: rgb(21, 103, 197);
+}
+
+#cross{
+  transition: .5s;
+  fill: rgb(0, 15, 153);
+}
+
+#cross:hover{
+  transition: .5s;
+  fill: rgb(197, 71, 21);
+}
+
+#question{
+  transition: .5s;
+  fill: rgb(6, 165, 165);
+}
+
+#question:hover{
+  transition: .5s;
+  fill: rgb(162, 0, 255);
 }

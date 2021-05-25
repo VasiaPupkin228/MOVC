@@ -6,8 +6,12 @@
         <h5 class="card-title">
             <%=val[i].name%>
             <% 
-                if(val[i].verified){
+                if(val[i].verified===true){
                         %><a href="/erth2"><%-include("icons/mark")%></a><%
+                } else if(val[i].verified==="half"){
+                    %><a href="/erth2"><%-include("icons/question")%></a><%
+                } else{
+                    %><a href="/erth2"><%-include("icons/cross")%></a><%
                 }
             %>
         </h5>
