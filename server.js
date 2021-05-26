@@ -82,6 +82,7 @@ mongoClient.connect((err, client)=>{
 			return;
 		} 
 		let pass = req.query.pass || country.pass;
+		delete country._id
 		if(pass && sha3(pass) == PASS){
 			pending.findOne({idc:country.idc},(err, val)=>{
 				co.updateOne({idc: country.idc},{$set: val}, {upsert:true},
