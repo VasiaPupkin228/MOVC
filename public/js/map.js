@@ -1,44 +1,52 @@
-function resize(canvas){
-    canvas.width = document.documentElement.scrollWidth;
-    canvas.height = document.documentElement.scrollHeight-document.getElementById("menu").scrollHeight
-}
-paper.install(window);
-window.onload = function() {
-    let canvas = document.getElementById('map-canvas');
-    resize(canvas);
+window.onload = ()=>{
+    var config = {
+        type: Phaser.AUTO,
+        width: document.documentElement.scrollWidth,
+        height: document.documentElement.scrollHeight-document.getElementById("menu").scrollHeight,
+        physics: {
+            default: 'arcade',
+        },
+        scene: {
+            preload: preload,
+            create: create
+        }
+    };
 
-    paper.setup(canvas);
-    
-    let start = new Point(250, 250);
+    var game = new Phaser.Game(config);
 
-    var tool = new Tool();
-
-    var quad = new Path.Rectangle({
-        point: [75, 75],
-        size: [75, 75],
-        strokeColor: 'black'
-    });
-    
-    view.onFrame = (event)=> {
-        // Each frame, rotate the path by 3 degrees:
-        quad.rotate(3);
-    }
-    
-    tool.onMouseDown = function(event) {
-        path = new Path();
-        path.strokeColor = 'green';
-        path.add(event.point);
+    function preload ()
+    {
+        this.load.image('sky', '/public/map.jpg')
+        this.load.image('logo', '/public/tests.png')
+        this.load.image('red', '/public/particle.png');
     }
 
-    tool.onMouseDrag = function(event) {
-        path.add(event.point);
+    function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
     }
-    tool.onMouseUp = (event)=>{
-        var myCircle = new Path.Circle({
-            center: event.point,
-            radius: 10
+
+    function create ()
+    {
+        let sky = this.add.image(1920/2, 1080/2, 'sky');
+        sky.setDisplaySize(1920, 1080)
+        var particles = this.add.particles('red');
+
+        var emitter = particles.createEmitter({
+            speed: 100,
+            scale: { start: 0.1, end: 0 },
+            blendMode: 'ADD'
         });
-        myCircle.strokeColor = 'black';
-        myCircle.fillColor = 'white';
+
+        var logo = this.physics.add.image(400, 100, 'logo');
+        
+        logo.setDisplaySize(200, 200)
+
+        
+
+        logo.setVelocity(400, 500);
+        logo.setBounce(1, 1);
+        logo.setCollideWorldBounds(true);
+
+        emitter.startFollow(logo);
     }
 }

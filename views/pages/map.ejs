@@ -3,12 +3,20 @@
     <head>
         <%- include("../components/bootstrap") %> 
         <%- include("../components/head") %> 
-        <script type="text/javascript" src="/public/js/paper/paper-full.min.js"></script>
-        <script type="text/javascript" src="/public/js/map.js"></script> 
+        <link rel="stylesheet" type="text/css" href="/public/css/style.css" />
+        <script src="/public/phaser.min.js"></script> 
+        <script src="/public/js/map.js"></script> 
+
         <title>Карта виртуальных государств</title>
     </head>
     <body>
+        <style>
+            body {
+                padding: 0px;
+                margin: 0px;
+                background: black;
+            }
+        </style>
         <%- include("../components/menu") %> 
-        <canvas id="map-canvas" resize></canvas>
     </body>
 </html>
