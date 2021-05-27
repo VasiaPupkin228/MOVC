@@ -5,9 +5,21 @@
     <%- include("../components/head") %> 
     <link rel="stylesheet" href="/public/css/menu.css">
     <title>Описание - <%= country.name %></title>
+    <meta id="idc" content="<%= country.idc %>">
   </head>
   <body>
       <%- include("../components/menu") %> 
+      <script>
+        window.addEventListener("load",()=>{
+          if(localStorage.getItem("isAdmin")){
+            let div = document.createElement('div');
+            div.className = "row";
+            div.innerHTML = `<div class="col-6"><a class="btn btn-primary bordert mb-2" href="/admin/approve-country?idc=${document.getElementById("idc").content}">Подтвердить</a></div>`;
+
+            document.getElementById("card-body").append(div)
+          }
+        });
+    </script>
       <div class="container borderc" style="background-color: #f8f9fa;">
         <div class="alert alert-danger text-center" style="border-radius: 20px; padding: 5px;" role="alert">
             Наш сайт не несет ответственности за материалы размещенные на данной странице. Все материалы размещаются пользователями. Мы стараемся удалять запрещенный контент.
@@ -16,7 +28,7 @@
           <div class="col-sm-12 col-md">
             <img class="bordert" style="width: 100%;"src=<%= country.img %>>
           </div>
-          <div class="col">
+          <div class="col" id="card-body">
             <div class="row">
                 <span>
                   <b><%= country.name %></b> 

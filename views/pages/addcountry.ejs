@@ -64,7 +64,7 @@ let options = [
         title:"Соответствие стандарту ERTH2",
         id:"verified",
         help:"Пусто если нет, half если частично соответствует, что угодно если полностью соответствует"
-    },
+    }
 ]
 %> 
 <html>
@@ -75,6 +75,7 @@ let options = [
     </head>
     <body>
         <script src="/public/js/prevent.js"></script>
+        <script src="/public/js/autobind.js"></script> 
         <%- include("../components/menu") %>
         <div class="container">
             <form action="/addcountry" method="post">

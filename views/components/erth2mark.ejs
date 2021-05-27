@@ -1,9 +1,11 @@
 <% 
     if(country.verified===true){
-            %><a href="/erth2#marks"><%-include("../components/icons/mark")%></a><%
+        %><a href="/erth2#marks"><%-include("../components/icons/erth2/completely")%></a><%
+    } else if(country.verified===false){
+        %><a href="/erth2#marks"><%-include("../components/icons/erth2/not-match")%></a><%
     } else if(country.verified==="half"){
-        %><a href="/erth2#marks"><%-include("../components/icons/question")%></a><%
+        %><a href="/erth2#marks"><%-include("../components/icons/erth2/partly")%></a><%
     } else{
-        %><a href="/erth2#marks"><%-include("../components/icons/cross")%></a><%
+        %><a href="/erth2#marks"><%-include("../components/icons/erth2/pending")%></a><%
     }
 %>

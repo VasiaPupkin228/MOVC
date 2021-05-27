@@ -27,32 +27,42 @@
   }
 }
 
-#mark{
+#completely{
   transition: .5s;
   fill: rgb(21, 197, 21);
 }
 
-#mark:hover{
+#completely:hover{
   transition: .5s;
   fill: rgb(21, 103, 197);
 }
 
-#cross{
+#partly{
   transition: .5s;
   fill: rgb(0, 15, 153);
 }
 
-#cross:hover{
+#partly:hover{
   transition: .5s;
   fill: rgb(197, 71, 21);
 }
 
-#question{
+#pending{
   transition: .5s;
   fill: rgb(6, 165, 165);
 }
 
-#question:hover{
+#pending:hover{
   transition: .5s;
   fill: rgb(162, 0, 255);
+}
+
+#not-match{
+  transition: .5s;
+  fill: rgb(180, 2, 2);
+}
+
+#not-match:hover{
+  transition: .5s;
+  fill: rgb(234, 0, 255);
 }

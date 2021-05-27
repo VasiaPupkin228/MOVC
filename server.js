@@ -74,6 +74,9 @@ mongoClient.connect((err, client)=>{
 	app.get("/admin/approve-country", (req,res)=>{
 		res.render("pages/approve-country");
 	});
+	app.get("/admin/bind", (req,res)=>{
+		res.render("pages/bind");
+	});
 	app.post("/approve-country", (req, res)=>{
 		let country = req.body || false;
 		if(!country){
@@ -85,6 +88,11 @@ mongoClient.connect((err, client)=>{
 		if(pass && sha3(pass) == PASS){
 			pending.findOne({idc:country.idc},(err, val)=>{
 				delete val._id;
+				if(country.verified==="half") {}
+				else if(country.verified==="false") country.verified = false;
+				else if(country.verified) country.verified = true;
+				else if(!country.verified) country.verified = "pending"
+				val.verified = country.verified;
 				co.updateOne({idc: country.idc},{$set: val}, {upsert:true},
 				(err)=>{
 					if (err){
@@ -109,7 +117,7 @@ mongoClient.connect((err, client)=>{
 				});
 			});
 		} else{
-			res.end("Hackerman bleat?");
+			res.end("Hackerman?");
 		}
 	});
 	app.post('/addcountry', (req, res)=>{
@@ -123,8 +131,9 @@ mongoClient.connect((err, client)=>{
 		country.pass = "";
 		
 		if(country.verified==="half") {}
+		else if(country.verified==="false") country.verified = false;
 		else if(country.verified) country.verified = true;
-		else country.verified = false;
+		else if(!country.verified) country.verified = "pending"
 
 		if(country.rank) country.rank = parseInt(country.rank);
 
@@ -159,7 +168,7 @@ mongoClient.connect((err, client)=>{
 		}
 		
     });
-	app.use((req, res, next)=>{
+	app.use((req, res)=>{
 		res.status(404);
 		res.render("pages/notfound")
 	});

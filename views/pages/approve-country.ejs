@@ -9,6 +9,11 @@ let options = [
         title:"id страны",
         help:"Использовать айди со страницы /pending-countries",
         id:"idc"
+    },
+    {
+        title:"Соответствие стандарту ERTH2",
+        id:"verified",
+        help:"false если нет, half если частично соответствует, что угодно если полностью соответствует"
     }
 ]
 %> 
@@ -20,6 +25,14 @@ let options = [
     </head>
     <body>
         <%- include("../components/menu") %>
+        <script src="/public/js/autobind.js"></script> 
+        <script>
+            const parse = new URLSearchParams(window.location.search);
+            let idc = parse.get('idc');
+            window.addEventListener("load",()=>{
+                document.getElementById("idc").value = idc;
+            });
+        </script>
         <div class="container">
             <form action="/approve-country" method="post">
                 <%
@@ -28,7 +41,7 @@ let options = [
                         <div class="row m-5">
                             <div class="col-lg-12"><label class="form-label"><%=options[i].title%></label></div>
                             <div class="col-sm-12">
-                                <input type="text" name="<%=options[i].id%>" class="form-control">
+                                <input type="text" id="<%=options[i].id%>" name="<%=options[i].id%>" class="form-control">
                         <%
                                 if(options[i].help) %><div class="form-text"><%=options[i].help%></div><%
                         %>

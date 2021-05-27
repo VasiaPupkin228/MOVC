@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<% 
+    let options = [
+    {
+        title:"Пароль",
+        help:"Пароль от админки",
+        id:"pass"
+    }
+    ]
+%> 
+<html>
+    <head>
+        <%- include("../components/bootstrap") %> 
+        <%- include("../components/head") %> 
+        <title>Автозаполнение Админ</title>
+    </head>
+    <body>
+        <%- include("../components/menu") %>
+        <script src="/public/js/autobind.js"></script> 
+        <script>
+            window.addEventListener("load",()=>{
+                document.getElementById("save").onclick = ()=>{
+                    let pass = document.getElementById("pass");
+                    localStorage.setItem("pass", pass.value);
+                    localStorage.setItem("isAdmin", true);
+                }
+            });
+        </script>
+
+        <div class="container">
+            <%
+                for(let i=0; i<options.length; i++) {
+                    %>
+                    <div class="row m-5">
+                        <div class="col-lg-12"><label class="form-label"><%=options[i].title%></label></div>
+                        <div class="col-sm-12">
+                            <input type="text" id="<%=options[i].id%>" class="form-control">
+                    <%
+                            if(options[i].help) %><div class="form-text"><%=options[i].help%></div><%
+                    %>
+                        </div>
+                    </div>
+                    <%
+                }
+            %>
+            <div class="row m-5">
+                <input id="save" type="button" value="Сохранить" class="btn btn-dark">    
+            </div>
+        </div>
+    </body>
+</html>
