@@ -19,6 +19,7 @@ mongoClient.connect((err, client)=>{
     let db = client.db("movc");
 	let co = db.collection("countries");
 	let pending = db.collection("pending-countries");
+	let deleted = db.collection("deleted-countries");
 	app.get("/", (req,res)=>{
 		res.redirect("/countries")
 	});
@@ -76,6 +77,36 @@ mongoClient.connect((err, client)=>{
 	});
 	app.get("/admin/bind", (req,res)=>{
 		res.render("pages/bind");
+	});
+	app.get("/admin/delete-country", (req,res)=>{
+		res.render("pages/delete-country");
+	});
+	app.post("/delete-country", (req, res)=>{
+		let country = req.body || false;
+		if(!country){
+			res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+			res.end("Нет тела запроса");
+			return;
+		} 
+		let pass = req.query.pass || country.pass;
+		if(pass && sha3(pass) == PASS){
+			pending.findOne({idc:country.idc}, (err, val)=>{
+				if (err||!val){
+					res.end(JSON.stringify({
+						code:2,
+						message:"Country is not deleted||nothing to delete",
+						err:`${err}`
+					}));
+				} else{
+					res.redirect("/pending-countries");
+				}
+				delete val._id;
+				deleted.insertOne(val);
+				pending.deleteOne({idc:country.idc});
+			});
+		} else{
+			res.end("Hackerman?")
+		}
 	});
 	app.post("/approve-country", (req, res)=>{
 		let country = req.body || false;
