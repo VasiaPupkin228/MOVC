@@ -24,8 +24,8 @@ window.onload = async ()=>{
 
         movc.on('click', onMapClick);
         
-        let geo = await fetch("/api/maingeo");
-        geo = await geo.json();
+        let geo = await fetch("https://raw.githubusercontent.com/artegoser/MOVC/main/geo/geo.geojson");
+        geo = (await geo.json()).features;
         for(let i = 0; i<geo.length; i++){
                 function onEachFeature(feature, layer) { 
                         layer.bindPopup(`
