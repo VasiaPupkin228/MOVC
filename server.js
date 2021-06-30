@@ -20,6 +20,7 @@ mongoClient.connect((err, client)=>{
 	let co = db.collection("countries");
 	let pending = db.collection("pending-countries");
 	let deleted = db.collection("deleted-countries");
+	let geo = db.collection("geo");
 	app.get("/", (req,res)=>{
 		res.redirect("/countries")
 	});
@@ -80,6 +81,9 @@ mongoClient.connect((err, client)=>{
 	});
 	app.get("/admin/delete-country", (req,res)=>{
 		res.render("pages/delete-country");
+	});
+	app.get("/admin/edit-country-map", (req,res)=>{
+		res.render("pages/edit-country-map");
 	});
 	app.post("/delete-country", (req, res)=>{
 		let country = req.body || false;
@@ -199,6 +203,16 @@ mongoClient.connect((err, client)=>{
 		}
 		
     });
+	app.get("/api/maingeo", (req,res)=>{
+		geo.findOne({type:"main"}, (err, val)=>{
+			res.end(JSON.stringify(val.geojson.features, null, "  "));
+		});
+	});
+	app.post("/api/country", (req,res)=>{
+		co.findOne({idc:req.body.idc}, (err, val)=>{
+			res.end(JSON.stringify(val, null, "  "));
+		});
+	});
 	app.use((req, res)=>{
 		res.status(404);
 		res.render("pages/notfound")

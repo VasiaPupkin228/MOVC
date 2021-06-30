@@ -4,7 +4,7 @@ let options = [
     {
         title:"Пароль админа",
         id:"pass",
-        type: "sec"
+        type:"sec"
     },
     {
         title:"id страны",
@@ -12,15 +12,9 @@ let options = [
         id:"idc"
     },
     {
-        title:"Соответствие стандарту ERTH2",
-        id:"verified",
-        type:"many",
-        types:[
-            "false",
-            "half",
-            "true"
-        ],
-        help:"False если нет, half если частично соответствует, что угодно если полностью соответствует"
+        title:"Массив точек",
+        help:"Рисуем в geojson editor и вставляем массив сюда",
+        id:"points"
     }
 ]
 %> 
@@ -28,7 +22,7 @@ let options = [
     <head>
         <%- include("../components/bootstrap") %> 
         <%- include("../components/head") %> 
-        <title>Добавить государство</title>
+        <title>Отклонить заявку государства</title>
     </head>
     <body>
         <%- include("../components/menu") %>
@@ -41,10 +35,10 @@ let options = [
             });
         </script>
         <div class="container">
-            <form action="/approve-country" method="post">
+            <form action="/edit-coords" method="post">
                 <%- include("../components/form", {options}) %> 
                 <div class="row m-5">
-                    <input type="submit" value="Добавить государство" class="btn btn-dark">    
+                    <input type="submit" value="Отклонить заявку" class="btn btn-dark">    
                 </div>
             </form>
         </div>

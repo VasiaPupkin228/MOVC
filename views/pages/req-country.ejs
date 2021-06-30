@@ -64,21 +64,7 @@ let options = [
         <%- include("../components/menu") %>
         <div class="container">
             <form action="/addcountry" method="post">
-                <%
-                    for(let i=0; i<options.length; i++) {
-                        %>
-                        <div class="row m-5">
-                            <div class="col-lg-12"><label class="form-label"><%=options[i].title%></label></div>
-                            <div class="col-sm-12">
-                                <input type="text" name="<%=options[i].id%>" id="<%=options[i].id%>" class="form-control">
-                        <%
-                                if(options[i].help) %><div class="form-text"><%=options[i].help%></div><%
-                        %>
-                            </div>
-                        </div>
-                        <%
-                    }
-                %>
+                <%- include("../components/form", {options}) %> 
                 <div class="row m-5">
                     <input type="submit" value="Отправить" class="btn btn-dark">    
                 </div>
