@@ -1,9 +1,11 @@
 window.onload = async ()=>{
-        document.getElementById("map").style.height = document.documentElement.scrollHeight-document.getElementById("menu").scrollHeight+"px"
-        document.getElementById("map").style.width = document.documentElement.scrollWidth+"px"
-        let movc = L.map('map', {
-                center: [55.752188, 37.617724]
-        }).setView([51.505, -0.09], 13);
+        document.getElementById("map").style.height = document.documentElement.scrollHeight-document.getElementById("menu").scrollHeight+"px";
+        document.getElementById("map").style.width = document.documentElement.scrollWidth+"px";
+        window.addEventListener(`resize`, event => {
+                document.getElementById("map").style.height = document.documentElement.scrollHeight-document.getElementById("menu").scrollHeight+"px";
+                document.getElementById("map").style.width = document.documentElement.scrollWidth+"px";
+        }, false);
+        let movc = L.map('map').setView([53.19, 41.28], 6);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 maxZoom: 18,
                 id: 'mapbox/streets-v11',
@@ -15,9 +17,9 @@ window.onload = async ()=>{
 
         function onMapClick(e) {
                 popup
-                        .setLatLng(e.latlng)
-                        .setContent("Похоже тут нет никакой страны... (" + e.latlng +")")
-                        .openOn(movc);
+                    .setLatLng(e.latlng)
+                    .setContent("Похоже тут нет никакой страны... " + e.latlng)
+                    .openOn(movc);
         }
 
         movc.on('click', onMapClick);
