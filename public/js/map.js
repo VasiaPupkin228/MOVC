@@ -56,12 +56,12 @@ window.onload = async ()=>{
                 });
                 country = await country.json();
                 L.geoJSON(geo[i],{
-                        onEachFeature: onEachFeature,
-                        style:{
-                                color: country?.color||"red",
-                                weight: 5,
-                                opacity: 0.65
-                        }
+                        onEachFeature: onEachFeature
+                        // style:{
+                        //         color: country?.color||"red",
+                        //         weight: 5,
+                        //         opacity: 0.65
+                        // }
                 }).addTo(movc);
         }
 }
