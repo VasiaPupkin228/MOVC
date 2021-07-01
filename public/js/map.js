@@ -53,7 +53,7 @@ window.onload = async ()=>{
                                                 <h5 class="text-center">
                                                         ${feature.properties.name}
                                                 </h5>
-                                                Население:${feature?.amount}
+                                                Население:${feature?.properties?.amount ? feature.properties.amount : "Не указано"}
                                         `)
                                 }
                         }
@@ -63,6 +63,12 @@ window.onload = async ()=>{
                                 let myIcon = L.icon({
                                         iconSize:     [16, 16],
                                         iconUrl: 'https://artegoser.github.io/movc/icons/city.png',
+                                });
+                                return L.marker(latlng, { icon: myIcon })
+                        } else if(feature.properties.type==="capital-city"){
+                                let myIcon = L.icon({
+                                        iconSize:     [16, 16],
+                                        iconUrl: 'https://artegoser.github.io/movc/icons/capital.png',
                                 });
                                 return L.marker(latlng, { icon: myIcon })
                         }
