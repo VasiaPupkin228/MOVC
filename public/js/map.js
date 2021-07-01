@@ -8,7 +8,7 @@ window.onload = async ()=>{
         let movc = L.map('map').setView([53.19, 41.28], 6);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 maxZoom: 18,
-                id: 'artegoser/ckqkx11n03qrc17pmlu543xpw',
+                id: 'artegoser/ckql6k3xd2yqw17n2awmke9d5',
                 tileSize: 512,
                 zoomOffset: -1,
                 accessToken: 'pk.eyJ1IjoiYXJ0ZWdvc2VyIiwiYSI6ImNrcDVhaHF2ejA2OTcyd3MxOG84bWRhOXgifQ.N3knNrPFIceTHVcIoPPcEQ'
@@ -48,7 +48,7 @@ window.onload = async ()=>{
                                         </div>
                                 </div>`);
                         else if(feature.geometry.type==="Point"){
-                                if(feature.properties.type==="city"){
+                                if(feature.properties.type==="city"||feature.properties.type==="capital-city"){
                                         layer.bindPopup(`
                                                 <h5 class="text-center">
                                                         ${feature.properties.name}
@@ -67,7 +67,7 @@ window.onload = async ()=>{
                                 return L.marker(latlng, { icon: myIcon })
                         } else if(feature.properties.type==="capital-city"){
                                 let myIcon = L.icon({
-                                        iconSize:     [16, 16],
+                                        iconSize:     [24, 24],
                                         iconUrl: 'https://artegoser.github.io/movc/icons/capital.png',
                                 });
                                 return L.marker(latlng, { icon: myIcon })
