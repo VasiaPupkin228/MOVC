@@ -490,7 +490,8 @@
         "stroke-opacity": 1,
         "fill": "#76aada",
         "fill-opacity": 0.5,
-        "name": "drk"
+        "name": "drk",
+        "km": 327631.99
       },
       "geometry": {
         "type": "Polygon",
@@ -2192,7 +2193,8 @@
         "stroke-opacity": 1,
         "fill": "#09aa1c",
         "fill-opacity": 0.5,
-        "name": "slingonia"
+        "name": "slingonia",
+        "km": 103622.33
       },
       "geometry": {
         "type": "Polygon",
