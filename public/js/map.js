@@ -14,15 +14,6 @@ window.onload = async ()=>{
                 accessToken: 'pk.eyJ1IjoiYXJ0ZWdvc2VyIiwiYSI6ImNrcDVhaHF2ejA2OTcyd3MxOG84bWRhOXgifQ.N3knNrPFIceTHVcIoPPcEQ'
         }).addTo(movc);
         var popup = L.popup();
-
-        function onMapClick(e) {
-                popup
-                    .setLatLng(e.latlng)
-                    .setContent("Похоже тут нет никакой страны... " + e.latlng)
-                    .openOn(movc);
-        }
-
-        movc.on('click', onMapClick);
         
         let geo = await fetch("https://raw.githubusercontent.com/artegoser/MOVC/main/geo/geo.geojson");
         geo = (await geo.json()).features;
