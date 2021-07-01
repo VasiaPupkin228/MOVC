@@ -485,10 +485,10 @@
     {
       "type": "Feature",
       "properties": {
-        "stroke": "#76aada",
+        "stroke": "#637a0f",
         "stroke-width": 2,
         "stroke-opacity": 1,
-        "fill": "#76aada",
+        "fill": "#637a0f",
         "fill-opacity": 0.5,
         "name": "drk",
         "km": 327631.99
