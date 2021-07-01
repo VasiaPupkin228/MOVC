@@ -2938,7 +2938,8 @@
         "marker-color": "#7e7e7e",
         "marker-size": "medium",
         "marker-symbol": "",
-        "name": "Тест"
+        "name": "Тест",
+        "type": "city"
       },
       "geometry": {
         "type": "Point",
