@@ -2931,6 +2931,22 @@
           ]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Тест"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.25391387939453,
+          56.14966137038112
+        ]
+      }
     }
   ]
 }
