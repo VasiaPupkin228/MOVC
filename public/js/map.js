@@ -8,7 +8,7 @@ window.onload = async ()=>{
         let movc = L.map('map').setView([53.19, 41.28], 6);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 maxZoom: 18,
-                id: 'mapbox/streets-v11',
+                id: 'artegoser/ckqkx11n03qrc17pmlu543xpw',
                 tileSize: 512,
                 zoomOffset: -1,
                 accessToken: 'pk.eyJ1IjoiYXJ0ZWdvc2VyIiwiYSI6ImNrcDVhaHF2ejA2OTcyd3MxOG84bWRhOXgifQ.N3knNrPFIceTHVcIoPPcEQ'
