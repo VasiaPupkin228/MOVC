@@ -1,3 +1,4 @@
+const utils = require("./utils");
 const express = require("express");
 const sha3 = require('js-sha3').sha3_224;
 const { MongoClient } = require("mongodb");
@@ -44,7 +45,7 @@ mongoClient.connect((err, client)=>{
     });
 
 	app.get('/pending-countries/:country', (req, res)=>{
-        pending.findOne({idc: req.params.country}, (err, val)=>{
+        pending.findOne({cidc: req.params.country}, (err, val)=>{
 			if(val) res.render("pages/pending-country", {country: val});
 			else {
 				res.render("pages/notfound")
@@ -52,7 +53,7 @@ mongoClient.connect((err, client)=>{
 		});
     });
 	app.get('/pending-countries', (req, res)=>{
-        pending.find({}, {name:1, idc:1, description:1}).toArray((err, results)=>{
+        pending.find({}, {name:1, cidc:1, description:1}).toArray((err, results)=>{
 			pending.countDocuments((_,v)=>{
 				res.render("pages/pending-countries", {val:results, count:v});
 			});
@@ -94,7 +95,7 @@ mongoClient.connect((err, client)=>{
 		} 
 		let pass = req.query.pass || country.pass;
 		if(pass && sha3(pass) == PASS){
-			pending.findOne({idc:country.idc}, (err, val)=>{
+			pending.findOne({cidc:country.cidc}, (err, val)=>{
 				if (err||!val){
 					res.end(JSON.stringify({
 						code:2,
@@ -123,6 +124,7 @@ mongoClient.connect((err, client)=>{
 		if(pass && sha3(pass) == PASS){
 			pending.findOne({idc:country.idc},(err, val)=>{
 				delete val._id;
+				delete val.cidc;
 				if(country.verified==="half") {}
 				else if(country.verified==="false") country.verified = false;
 				else if(country.verified) country.verified = true;
@@ -175,6 +177,7 @@ mongoClient.connect((err, client)=>{
 		country = filter(country, (val)=>{
 			return val !== "";
 		});
+		country.description = utils.replacespec(country.description);
 		if(pass && sha3(pass) == PASS){
 			co.updateOne({idc: country.idc},{$set: country}, {upsert:true},
 				(err)=>{
@@ -189,6 +192,7 @@ mongoClient.connect((err, client)=>{
 					}
 				});
 		} else{
+			country.cidc = sha3(""+Date.now());
 			pending.insertOne(country,()=>{
 				if (err){
 					res.end(JSON.stringify({
@@ -197,7 +201,7 @@ mongoClient.connect((err, client)=>{
 						err:`${err}`
 					}));
 				} else{
-					res.redirect(`/pending-countries/${country.idc}`);
+					res.redirect(`/pending-countries/${country.cidc}`);
 				}
 			});
 		}

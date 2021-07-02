@@ -30,13 +30,16 @@
           </div>
           <div class="col" id="card-body">
             <div class="row">
+                <span><b>ID:</b> <%- country.idc %></span>
+            </div>
+            <div class="row">
                 <span>
                   <b><%= country.name %></b> 
                   <%- include("../components/erth2mark") %>
                 </span>
             </div>
             <div class="row">
-                <span><b>Описание:</b> <%= country.description %></span>
+                <span><b>Описание:</b> <%- country.description %></span>
             </div>
             <div class="row">
                 <span><b>Тип правления:</b> <%= country.type %></span>
