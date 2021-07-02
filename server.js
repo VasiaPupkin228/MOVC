@@ -113,6 +113,15 @@ mongoClient.connect((err, client)=>{
 			res.end("Hackerman?")
 		}
 	});
+	app.post("/country-preview", (req, res)=>{
+		let country = req.body;
+		if(country.verified==="half") {}
+		else if(country.verified==="false") country.verified = false;
+		else if(country.verified) country.verified = true;
+		else if(!country.verified) country.verified = "pending"
+		country.description = utils.replacespec(country.description);
+		res.render("pages/country", {country})
+	});
 	app.post("/approve-country", (req, res)=>{
 		let country = req.body || false;
 		if(!country){
