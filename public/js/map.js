@@ -7,7 +7,7 @@ window.onload = async ()=>{
         }, false);
         let movc = L.map('map').setView([53.19, 41.28], 6);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                maxZoom: 18,
+                maxZoom: 11,
                 id: 'artegoser/ckql6k3xd2yqw17n2awmke9d5',
                 tileSize: 512,
                 zoomOffset: -1,
@@ -52,19 +52,28 @@ window.onload = async ()=>{
                 function cpoint(feature, latlng){
                         if(feature.properties.type==="city"){
                                 let myIcon = L.icon({
-                                        iconSize:     [16, 16],
+                                        iconSize:     [12, 12],
                                         iconUrl: 'https://artegoser.github.io/movc/icons/city.png',
                                 });
-                                return L.marker(latlng, { icon: myIcon })
+                                return L.marker(latlng, { icon: myIcon }).bindTooltip(feature.properties.name, 
+                                {
+                                        permanent: false, 
+                                        direction: 'top'
+                                });
                         } else if(feature.properties.type==="capital-city"){
                                 let myIcon = L.icon({
-                                        iconSize:     [24, 24],
+                                        iconSize:     [16, 16],
                                         iconUrl: 'https://artegoser.github.io/movc/icons/capital.png',
                                 });
-                                return L.marker(latlng, { icon: myIcon })
+                                return L.marker(latlng, { icon: myIcon }).bindTooltip(feature.properties.name, 
+                                {
+                                    permanent: false, 
+                                    direction: 'top'
+                                });
                         }
                         return L.marker(latlng)
                 }
+                console.log("Получаю: "+(geo[i].properties.name||geo[i].properties.Name));
                 let country = await fetch('/api/country', {
                         method: 'POST',
                         headers: {
@@ -73,6 +82,10 @@ window.onload = async ()=>{
                         body: JSON.stringify({idc:geo[i].properties.name||geo[i].properties.Name})
                 });
                 country = await country.json();
+                if(!country&&(geo[i].type==="Polygon")){
+                        console.log("Ошибка в получении: "+(geo[i].properties.name||geo[i].properties.Name));
+                        continue;
+                }
                 L.geoJSON(geo[i],{
                         onEachFeature: onEachFeature,
                         pointToLayer: cpoint,

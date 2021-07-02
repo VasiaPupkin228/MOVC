@@ -21,7 +21,19 @@
             </div>
             <%
         }
-        else {
+        else if(options[i].type==="area"){
+            %>
+            <div class="row m-5">
+                <div class="col-lg-12"><label class="form-label"><%=options[i].title%></label></div>
+                <div class="col-sm-12">
+                    <textarea id="<%=options[i].id%>" name="<%=options[i].id%>" class="form-control"></textarea>
+            <%
+                    if(options[i].help) %><div class="form-text"><%=options[i].help%></div><%
+            %>
+                </div>
+            </div>
+            <%
+        } else {
             %>
             <div class="row m-5">
                 <div class="col-lg-12"><label class="form-label"><%=options[i].title%></label></div>
