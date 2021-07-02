@@ -24,7 +24,37 @@ let options = [
     {
         title:"Описание*",
         id:"description",
-        help:"Например Здесь все едят бананы",
+        help:`
+        <script>
+            function bold(){
+                document.getElementById("description").value = document.getElementById("description").value + "bold()"
+            }
+            function url(){
+                document.getElementById("description").value = document.getElementById("description").value + "url()"
+            }
+            function texturl(){
+                document.getElementById("description").value = document.getElementById("description").value + "trl(,)"
+            }
+            function imgs(){
+                document.getElementById("description").value = document.getElementById("description").value + "img()"
+            }
+            function custom(){
+                document.getElementById("description").value = document.getElementById("description").value + "custom(,)"
+            }
+            function audio(){
+                document.getElementById("description").value = document.getElementById("description").value + "audio()"
+            }
+        </script>
+        <div class="row text-center">
+            <div class="col"><input type="button" onclick=bold() value="Жирный шрифт" class="btn btn-outline-dark btn-sm"></div>
+            <div class="col"><input type="button" onclick=url() value="Ссылка" class="btn btn-outline-dark btn-sm"></div>
+            <div class="col"><input type="button" onclick=texturl() value="Текстовая ссылка" class="btn btn-outline-dark btn-sm"></div>
+            <div class="col"><input type="button" onclick=imgs() value="Изображение" class="btn btn-outline-dark btn-sm"></div>
+            <div class="col"><input type="button" onclick=audio() value="Аудио" class="btn btn-outline-dark btn-sm"></div>
+            <div class="col"><input type="button" onclick=custom() value="Доп. информация" class="btn btn-outline-dark btn-sm"></div>
+        </div>
+        Например Здесь все едят бананы
+        `,
         type:"area"
     },
     {
