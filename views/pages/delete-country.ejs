@@ -9,7 +9,7 @@ let options = [
     {
         title:"id страны",
         help:"Использовать айди со страницы /pending-countries",
-        id:"idc"
+        id:"cidc"
     }
 ]
 %> 
@@ -24,9 +24,9 @@ let options = [
         <script src="/public/js/autobind.js"></script> 
         <script>
             const parse = new URLSearchParams(window.location.search);
-            let idc = parse.get('idc');
+            let cidc = parse.get('cidc');
             window.addEventListener("load",()=>{
-                document.getElementById("idc").value = idc;
+                document.getElementById("cidc").value = cidc;
             });
         </script>
         <div class="container">

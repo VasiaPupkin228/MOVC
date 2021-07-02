@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/public/css/menu.css">
     <title>Описание - <%= country.name %></title>
     <meta id="idc" content="<%= country.idc %>">
+    <meta id="cidc" content="<%= country.cidc %>">
   </head>
   <body>
       <%- include("../components/menu") %> 
@@ -14,8 +15,9 @@
           if(localStorage.getItem("isAdmin")){
             let div = document.createElement('div');
             div.className = "row";
-            div.innerHTML = `<div class="col-6"><a class="btn btn-primary bordert mb-2" href="/admin/approve-country?idc=${document.getElementById("idc").content}">Подтвердить</a></div>`;
-
+            div.innerHTML = `
+            <div class="col-6 m-0"><a class="btn btn-primary bordert mb-2" href="/admin/approve-country?idc=${document.getElementById("idc").content}">Подтвердить</a></div>
+            <div class="col-6 m-0"><a class="btn btn-primary bordert mb-2" href="/admin/delete-country?cidc=${document.getElementById("cidc").content}">Отклонить</a></div>`;
             document.getElementById("card-body").append(div)
           }
         });

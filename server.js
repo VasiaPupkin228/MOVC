@@ -97,7 +97,7 @@ mongoClient.connect((err, client)=>{
 		if(pass && sha3(pass) == PASS){
 			pending.findOne({cidc:country.cidc}, (err, val)=>{
 				if (err||!val){
-					res.end(JSON.stringify({
+					return res.end(JSON.stringify({
 						code:2,
 						message:"Country is not deleted||nothing to delete",
 						err:`${err}`
@@ -107,7 +107,7 @@ mongoClient.connect((err, client)=>{
 				}
 				delete val._id;
 				deleted.insertOne(val);
-				pending.deleteOne({idc:country.idc});
+				pending.deleteOne({cidc:country.cidc});
 			});
 		} else{
 			res.end("Hackerman?")
