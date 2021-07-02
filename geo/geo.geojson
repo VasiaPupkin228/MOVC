@@ -4588,6 +4588,150 @@
           39.027718840211605
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#9e9e9e",
+        "marker-size": "medium",
+        "marker-symbol": "city",
+        "name": "Тифлиси",
+        "type": "city",
+        "amount": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.7967529296875,
+          41.701627343789205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "city",
+        "name": "Teлави",
+        "type": "city",
+        "amount": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.472412109375,
+          41.92680320648791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#ca1c1c",
+        "marker-size": "medium",
+        "marker-symbol": "star",
+        "name": "Карченск",
+        "type": "capital-city",
+        "amount": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.6868896484375,
+          43.0287452513488
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "city",
+        "name": "Грозный",
+        "type": "city",
+        "amount": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.69213867187499,
+          43.32517767999296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "city",
+        "name": "Баку",
+        "type": "city",
+        "amount": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          49.833984375,
+          40.38002840251183
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "city",
+        "name": "Сочи",
+        "type": "city",
+        "amount": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.715576171875,
+          43.600284023536325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "city",
+        "name": "Ереван",
+        "type": "city",
+        "amount": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.49462890625,
+          40.204050425113294
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "city",
+        "name": "Батуми",
+        "type": "city",
+        "amount": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.6326904296875,
+          41.64828831259533
+        ]
+      }
     }
   ]
 }
