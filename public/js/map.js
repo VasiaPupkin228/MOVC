@@ -17,6 +17,7 @@ window.onload = async ()=>{
         
         let geo = await fetch("https://raw.githubusercontent.com/artegoser/MOVC/main/geo/geo.geojson");
         geo = (await geo.json()).features;
+        document.getElementById("map").classList.add("ghost");
         for(let i = 0; i<geo.length; i++){
                 function onEachFeature(feature, layer) { 
                         if(feature.geometry.type==="Polygon")
@@ -73,6 +74,7 @@ window.onload = async ()=>{
                         }
                         return L.marker(latlng)
                 }
+                document.getElementById("preloader").innerHTML = "Получаю: "+(geo[i].properties.name||geo[i].properties.Name);
                 console.log("Получаю: "+(geo[i].properties.name||geo[i].properties.Name));
                 let country = await fetch('/api/country', {
                         method: 'POST',
@@ -96,4 +98,5 @@ window.onload = async ()=>{
                         }
                 }).addTo(movc);
         }
+        document.getElementById("map").classList.remove("ghost")
 }
