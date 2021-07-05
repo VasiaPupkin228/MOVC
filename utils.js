@@ -58,7 +58,7 @@ function replacespec(text){
         text = text.replace(/\n/g, "<br>");
         return text;
     } catch{
-        return "";
+        return false;
     }   
 }
 

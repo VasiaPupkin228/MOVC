@@ -187,6 +187,7 @@ mongoClient.connect((err, client)=>{
 			return val !== "";
 		});
 		country.description = utils.replacespec(country.description);
+		if(country.description === false) delete country.description;
 		if(pass && sha3(pass) == PASS){
 			co.updateOne({idc: country.idc},{$set: country}, {upsert:true},
 				(err)=>{
