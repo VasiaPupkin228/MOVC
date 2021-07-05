@@ -1,10 +1,10 @@
 function replacespec(text){
     try{
         let urlspec = /url\(.*?\)/g;
-        let texturlspec = /trl\(.*?\)/g;
+        let texturlspec = /trl\([\n.]*?\)/g;
         let imgspec = /img\(.*?\)/g;
-        let boldspec = /bold\(.*?\)/g;
-        let customoption = /custom\(.*?\)/g;
+        let boldspec = /bold\([\n.]*?\)/g;
+        let customoption = /custom\([\n.]*?\)/g;
         let audiospec = /audio\(.*?\)/g;
         text = text.replace(/&/g, "&amp;");
         text = text.replace(/</g, "&lt;");
