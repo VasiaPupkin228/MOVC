@@ -132,6 +132,10 @@ mongoClient.connect((err, client)=>{
 		let pass = req.query.pass || country.pass;
 		if(pass && sha3(pass) == PASS){
 			pending.findOne({idc:country.idc},(err, val)=>{
+				if(!val){
+					res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+					return res.end("Нечего подтверждать")
+				}
 				delete val._id;
 				delete val.cidc;
 				if(country.verified==="half") {}
