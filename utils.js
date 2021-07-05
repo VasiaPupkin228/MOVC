@@ -1,11 +1,10 @@
 function replacespec(text){
-    let urlspec = new RegExp(/url\(.*?\)/g);
-    let texturlspec = new RegExp(/trl\(.*?\)/g);
-    let imgspec = new RegExp(/img\(.*?\)/g);
-    let boldspec = new RegExp(/bold\(.*?\)/g);
-    let customoption = new RegExp(/custom\(.*?\)/g);
-    let audiospec = new RegExp(/audio\(.*?\)/g);
-
+    let urlspec = /url\(.*?\)/g;
+    let texturlspec = /trl\(.*?\)/g;
+    let imgspec = /img\(.*?\)/g;
+    let boldspec = /bold\(.*?\)/g;
+    let customoption = /custom\(.*?\)/g;
+    let audiospec = /audio\(.*?\)/g;
     text = text.replace(/&/g, "&amp;");
     text = text.replace(/</g, "&lt;");
     text = text.replace(/>/g, "&gt;");
@@ -51,11 +50,10 @@ function replacespec(text){
         let spec = text.match(customoption);
         for(let i = 0; i<spec.length; i++){
             let args = (spec[i].slice(7, -1)).split(",")
-            text = text.replace(spec[i], `<div class="row"><span><b>${args[0]}: </b>${args[1]}</span></div></b>`)
+            text = text.replace(spec[i], `<div class="row"><span><b>${args[0]}: </b>${args[1]}</span></div>`)
         }
     } catch{}
-
-
+    text = text.replace(/;un;\r\n/g, "");
     text = text.replace(/\n/g, "<br>");
     return text;
 }

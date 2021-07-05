@@ -36,23 +36,32 @@ let options = [
         id:"description",
         help:`
         <script>
+            function insert(text) {
+                let txtarea = document.getElementById("description");
+                let start = txtarea.selectionStart;
+                let end = txtarea.selectionEnd;
+                let finText = txtarea.value.substring(0, start) + text + txtarea.value.substring(end);
+                txtarea.value = finText;
+                txtarea.focus();
+                txtarea.selectionEnd = ( start == end )? (end + text.length) : end ;
+            }
             function bold(){
-                document.getElementById("description").value = document.getElementById("description").value + "bold()"
+                insert("bold()")
             }
             function url(){
-                document.getElementById("description").value = document.getElementById("description").value + "url()"
+                insert("url()")
             }
             function texturl(){
-                document.getElementById("description").value = document.getElementById("description").value + "trl(,)"
+                insert("trl(,)")
             }
             function imgs(){
-                document.getElementById("description").value = document.getElementById("description").value + "img()"
+                insert("img()")
             }
             function custom(){
-                document.getElementById("description").value = document.getElementById("description").value + "custom(,)"
+                insert("custom(,);un;")
             }
             function audio(){
-                document.getElementById("description").value = document.getElementById("description").value + "audio()"
+                insert("audio()")
             }
         </script>
         <div class="row text-center">
