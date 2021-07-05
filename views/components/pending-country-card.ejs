@@ -7,7 +7,7 @@
             <%=val[i].name%> 
             <%- include("../components/erth2mark" , {country:val[i]}) %>
         </h5>
-        <p class="card-text"><%-val[i].description.slice(0, 500)+"..."%></p>
+        <p class="card-text"><%-val[i].description.replace(/(<([^>]+)>)/gi,'\n').slice(0, 500)+"..."%></p>
         <a href= "/pending-countries/<%=val[i].cidc%>" class="btn btn-primary bordert mb-2">Подробнее</a>
     </div>
 </div>
