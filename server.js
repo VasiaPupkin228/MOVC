@@ -21,6 +21,7 @@ const mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
 mongoClient.connect((err, client)=>{
     let db = client.db("movc");
 	require("./routes")(app, db, PASS, filter);
+	require("./socket")(io,  db, PASS, filter);
 });
 
 app.listen(PORT, ()=>{ console.log(`Listening https on ${PORT}`)});
