@@ -207,7 +207,7 @@ module.exports = (app,db,PASS,filter)=>{
 				});
 		} else{
 			country.cidc = sha3(""+Math.random()+Date.now());
-			pending.insertOne(country,()=>{
+			pending.insertOne(country,(err)=>{
 				if (err){
 					res.end(JSON.stringify({
 						code:2,
