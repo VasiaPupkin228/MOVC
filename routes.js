@@ -20,6 +20,11 @@ module.exports = (app,db,PASS,filter)=>{
             res.render("pages/valutes", {valutes});
         });
     });
+	app.get('/valutes/:valute', (req, res)=>{
+        valutes.findOne({idc:req.params.valute}, (err, valute)=>{
+            res.render("pages/valute", valute);
+        });
+    });
 	app.get("/req-country", (req, res)=>{
 		res.render("pages/req-country");
 	});

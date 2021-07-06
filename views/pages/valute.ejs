@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include("../components/bootstrap") %> 
+        <%- include("../components/head") %> 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="/public/js/valute.js"></script>
+        <title>Валюта - <%= name %> </title>
+    </head>
+    <body>
+        <%- include("../components/menu") %> 
+        <div class="container borderc" style="background-color: #f8f9fa;">
+            <div class="row">
+                <div class="col-sm-12 col-md">
+                  <img class="bordert" style="width: 100%;"src=<%= img %>>
+                </div>
+                <div class="col-sm-12 col-md">
+                    <div class="row" style="margin: 5px;">
+                        <h2 class="text-center bg-primary bordert" style="color: white;">
+                            <%= idc %> - <%= name %> 
+                        </h2>
+                    </div>
+                    <div class="row">
+                        <h4 class="col">RUB: <span id="RUB"><%= rub %></span></h4> 
+                    </div>
+                    <div class="row">
+                        <h4 class="col">USD: <span id="USD">undefined</span></h4> 
+                    </div>
+                    <div class="row">
+                        <h4 class="col">EUR: <span id="EUR">undefined</span></h4> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
