@@ -5,6 +5,7 @@ module.exports = (app,db,PASS,filter)=>{
 	let pending = db.collection("pending-countries");
 	let deleted = db.collection("deleted-countries");
 	let geo = db.collection("geo");
+	let valutes = db.collection("valutes");
     let cw = db.collection("clickwars");
 	app.get("/", (req,res)=>{
 		res.redirect("/countries")
@@ -12,6 +13,11 @@ module.exports = (app,db,PASS,filter)=>{
     app.get('/clickwars/:war', (req, res)=>{
         cw.findOne({name:req.params.war}, (err,val)=>{
             res.render("pages/clickwars", {war:val});
+        });
+    });
+	app.get('/valutes', (req, res)=>{
+        valutes.find({}).toArray((err, valutes)=>{
+            res.render("pages/valutes", {valutes});
         });
     });
 	app.get("/req-country", (req, res)=>{
