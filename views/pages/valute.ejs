@@ -8,6 +8,7 @@
         <script src="/public/js/chart.js"></script>
         <script src="/public/js/money.js"></script>
         <title>Валюта - <%= name %> </title>
+        <meta id="id" content="<%= idc %>">
     </head>
     <body>
         <%- include("../components/menu") %> 
@@ -44,6 +45,18 @@
                     </div>
                     <div class="row">
                         <h4 class="col">EUR: <span id="EUR">undefined</span></h4> 
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col pr-0">
+                            <input type="number" id="amount" class="form-control" placeholder="Количество">
+                        </div>
+                        <div class="col pl-0 pr-0">
+                            <input type="text" id="code" class="form-control" placeholder="Код">
+                        </div>
+                        <div class="col pl-1">
+                            <input class="btn btn-secondary" type="button" id="get" value="Узнать">
+                        </div>
+                        <h3 class="col" id="coursetotal"></h3>
                     </div>
                 </div>
                 <script>

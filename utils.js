@@ -70,7 +70,6 @@ function addVirtCurrencies(fx, valutes) {
             fx.rates[valute.idc] = 1/fx(valute.amount).from(valute.type).to("RUB");
         }
     }
-    console.log(fx.rates);
     return fx.rates
 }
 

@@ -17,6 +17,12 @@ module.exports = async (app,db,PASS,filter)=>{
 	app.get("/", (req,res)=>{
 		res.redirect("/countries")
 	});
+	app.get("/courses", (req,res)=>{
+		res.end(JSON.stringify({
+			base:fx.base,
+			rates:fx.rates
+		}, null, "  "));
+	});
     app.get('/clickwars/:war', (req, res)=>{
         cw.findOne({name:req.params.war}, (err,val)=>{
             res.render("pages/clickwars", {war:val});
@@ -39,7 +45,7 @@ module.exports = async (app,db,PASS,filter)=>{
 				}
 			}
 			if(valute.type !== "USD"){
-				valute.usd = (fx(valute.amount).from(valute.type).to("USD")).toFixed(3);
+				valute.usd = fx(valute.amount).from(valute.type).to("USD").toFixed(3);
 			} else{
 				valute.usd = valute.amount
 			}
