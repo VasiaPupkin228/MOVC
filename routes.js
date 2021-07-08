@@ -1,5 +1,6 @@
 const sha3 = require('js-sha3').sha3_224;
 const utils = require("./utils");
+const jwt = require("jsonwebtoken");
 module.exports = (app,db,PASS,filter)=>{
     let co = db.collection("countries");
 	let pending = db.collection("pending-countries");
@@ -70,6 +71,9 @@ module.exports = (app,db,PASS,filter)=>{
     });
 	app.get("/admin", (req,res)=>{
 		res.render("pages/admin");
+	});
+	app.get("/admin/valute-token", (req,res)=>{
+		res.render("pages/valute-token");
 	});
 	app.get("/admin/addcountry", (req,res)=>{
 		res.render("pages/addcountry");
@@ -230,6 +234,25 @@ module.exports = (app,db,PASS,filter)=>{
 		co.findOne({idc:req.body.idc}, (err, val)=>{
 			res.end(JSON.stringify(val, null, "  "));
 		});
+	});
+	app.post("/api/valute/token", (req,res)=>{
+		console.log(req.body)
+		pass = req.body.pass;
+		if(pass && sha3(pass) == PASS){
+			res.end(jwt.sign({valute:req.body.valute}, PASS));
+		} else{
+			res.end("hackerman")
+		}
+	});
+	app.post("/api/valute/update", (req,res)=>{
+		let tokenDec;
+		try {
+			tokenDec = jwt.verify(req.body.token, PASS);	
+		} catch (error) {
+			return res.end("invalid token");
+		}
+		valutes.updateOne({idc:tokenDec.valute}, {$set:{rub:req.body.amount}});
+		res.end("updated");
 	});
 	app.use((req, res)=>{
 		res.status(404);
