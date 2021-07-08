@@ -1,6 +1,7 @@
 const sha3 = require('js-sha3').sha3_224;
 const utils = require("./utils");
 const jwt = require("jsonwebtoken");
+const fetch = require("node-fetch");
 module.exports = (app,db,PASS,filter)=>{
     let co = db.collection("countries");
 	let pending = db.collection("pending-countries");
@@ -22,7 +23,11 @@ module.exports = (app,db,PASS,filter)=>{
         });
     });
 	app.get('/valutes/:valute', (req, res)=>{
-        valutes.findOne({idc:req.params.valute}, (err, valute)=>{
+        valutes.findOne({idc:req.params.valute}, async (err, valute)=>{
+			if(valute.course){
+				valute.course = await fetch(valute.course);
+				valute.course = await valute.course.text();
+			}
             res.render("pages/valute", valute);
         });
     });
@@ -236,7 +241,6 @@ module.exports = (app,db,PASS,filter)=>{
 		});
 	});
 	app.post("/api/valute/token", (req,res)=>{
-		console.log(req.body)
 		pass = req.body.pass;
 		if(pass && sha3(pass) == PASS){
 			res.end(jwt.sign({valute:req.body.valute}, PASS));

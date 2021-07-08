@@ -5,6 +5,7 @@
         <%- include("../components/head") %> 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="/public/js/valute.js"></script>
+        <script src="/public/js/chart.js"></script>
         <title>Валюта - <%= name %> </title>
     </head>
     <body>
@@ -25,6 +26,15 @@
                             <%= idc %> - <%= name %> 
                         </h2>
                     </div>
+                    <%  
+                        if(typeof course !== "undefined"){
+                            %>
+                                <div class="row">
+                                    <canvas id="course" height="200" role="img"></canvas>
+                                </div>
+                            <%
+                        }
+                    %>
                     <div class="row">
                         <h4 class="col">RUB: <span id="RUB"><%= rub %></span></h4> 
                     </div>
@@ -35,6 +45,59 @@
                         <h4 class="col">EUR: <span id="EUR">undefined</span></h4> 
                     </div>
                 </div>
+                <script>
+                    async function get(){
+                        let data = <%- typeof course !== "undefined" ? course : "" %>;
+                        let diff = data[data.length-1].value-data[data.length-2].value;
+                        let bg;
+                        if (diff>=0) bg = "rgba(0, 143, 0, 0.7)";
+                        else bg = "rgba(231, 103, 103, 0.7)"; 
+                        function getKeys(data){
+                            data = data.slice(-20);
+                            let arr = [];
+                            for(let i = 0; i<data.length; i++){
+                                arr.push(data[i].strtime)
+                            }
+                            return arr;
+                        }
+        
+                        function getVal(data){
+                            data = data.slice(-20);
+                            let arr = [];
+                            for(let i = 0; i<data.length; i++){
+                                arr.push(data[i].value)
+                            }
+                            return arr;
+                        }
+                        var lineChartData = {
+                        labels: getKeys(data),
+                        datasets: [{
+                            label: 'SKL за рубль',
+                            labelColor: '#fff',
+                            pointBorderColor: 'white',
+                            borderColor: 'white',
+                            backgroundColor:bg,
+                            fill:true,
+                            borderWidth: 1,
+                            data: getVal(data)
+                        }]
+                        }
+                        
+                        var options = {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                        };
+                        Chart.defaults.color = "black";
+                        var ctx = document.getElementById('course');
+        
+                        var chart = new Chart(ctx, {
+                            type: 'line',
+                            data: lineChartData,
+                            options: options,
+                        });
+                    }
+                    get()
+                </script>
             </div>
         </div>
     </body>
