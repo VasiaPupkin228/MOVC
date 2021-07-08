@@ -6,6 +6,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="/public/js/valute.js"></script>
         <script src="/public/js/chart.js"></script>
+        <script src="/public/js/money.js"></script>
         <title>Валюта - <%= name %> </title>
     </head>
     <body>
@@ -36,10 +37,10 @@
                         }
                     %>
                     <div class="row">
-                        <h4 class="col">RUB: <span id="RUB"><%= rub %></span></h4> 
+                        <h4 class="col">RUB: <span id="RUB">undefined</span></h4> 
                     </div>
                     <div class="row">
-                        <h4 class="col">USD: <span id="USD">undefined</span></h4> 
+                        <h4 class="col">USD: <span id="USD"><%= usd %></span></h4> 
                     </div>
                     <div class="row">
                         <h4 class="col">EUR: <span id="EUR">undefined</span></h4> 

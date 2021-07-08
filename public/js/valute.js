@@ -1,11 +1,9 @@
 window.addEventListener("load",()=>{
-    $.getJSON("https://www.cbr-xml-daily.ru/daily_json.js", (course)=>{
-        let EUR = course.Valute.EUR.Value;
-        let USD = course.Valute.USD.Value;
-        let valute = parseFloat($("#RUB").html())
-        EUR = (valute/EUR).toFixed(3);
-        USD = (valute/USD).toFixed(3);
-        $("#USD").html(USD);
-        $("#EUR").html(EUR);
+    $.getJSON("https://www.cbr-xml-daily.ru/latest.js", (course)=>{
+        fx.base = course.base;
+        fx.rates = course.rates;
+        let USD = parseFloat($("#USD").html())
+        $("#RUB").html(fx(USD).from("USD").to("RUB").toFixed(3));
+        $("#EUR").html(fx(USD).from("USD").to("EUR").toFixed(3));
     });
 });

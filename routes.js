@@ -2,7 +2,10 @@ const sha3 = require('js-sha3').sha3_224;
 const utils = require("./utils");
 const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
-module.exports = (app,db,PASS,filter)=>{
+let fx = require("money");
+module.exports = async (app,db,PASS,filter)=>{
+	let cbr = (await (await fetch("https://www.cbr-xml-daily.ru/latest.js")).json());fx.base = cbr.base;fx.rates=cbr.rates;
+	let cachedvalutes = {};
     let co = db.collection("countries");
 	let pending = db.collection("pending-countries");
 	let deleted = db.collection("deleted-countries");
@@ -25,8 +28,18 @@ module.exports = (app,db,PASS,filter)=>{
 	app.get('/valutes/:valute', (req, res)=>{
         valutes.findOne({idc:req.params.valute}, async (err, valute)=>{
 			if(valute.course){
-				valute.course = await fetch(valute.course);
-				valute.course = await valute.course.text();
+				if(cachedvalutes[req.params.valute]){
+					valute.course = cachedvalutes[req.params.valute]
+				} else{
+					valute.course = await fetch(valute.course);
+					valute.course = await valute.course.text();
+					cachedvalutes[req.params.valute] = valute.course;
+				}
+			}
+			if(valute.type !== "USD"){
+				valute.usd = (fx(valute.amount).from(valute.type).to("USD")).toFixed(3);
+			} else{
+				valute.usd = valute.amount
 			}
             res.render("pages/valute", valute);
         });
@@ -255,7 +268,7 @@ module.exports = (app,db,PASS,filter)=>{
 		} catch (error) {
 			return res.end("invalid token");
 		}
-		valutes.updateOne({idc:tokenDec.valute}, {$set:{rub:req.body.amount}});
+		valutes.updateOne({idc:tokenDec.valute}, {$set:{amount:req.body.amount}});
 		res.end("updated");
 	});
 	app.use((req, res)=>{
