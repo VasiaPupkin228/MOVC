@@ -20,12 +20,12 @@ module.exports = async (app,db,PASS,filter)=>{
             res.render("pages/clickwars", {war:val});
         });
     });
-	app.get('/valutes', (req, res)=>{
+	app.get('/currencies', (req, res)=>{
         valutes.find({}).toArray((err, valutes)=>{
             res.render("pages/valutes", {valutes});
         });
     });
-	app.get('/valutes/:valute', (req, res)=>{
+	app.get('/currencies/:valute', (req, res)=>{
         valutes.findOne({idc:req.params.valute}, async (err, valute)=>{
 			if(valute.course){
 				if(cachedvalutes[req.params.valute]){
@@ -90,7 +90,7 @@ module.exports = async (app,db,PASS,filter)=>{
 	app.get("/admin", (req,res)=>{
 		res.render("pages/admin");
 	});
-	app.get("/admin/valute-token", (req,res)=>{
+	app.get("/admin/currency-token", (req,res)=>{
 		res.render("pages/valute-token");
 	});
 	app.get("/admin/addcountry", (req,res)=>{
@@ -253,7 +253,7 @@ module.exports = async (app,db,PASS,filter)=>{
 			res.end(JSON.stringify(val, null, "  "));
 		});
 	});
-	app.post("/api/valute/token", (req,res)=>{
+	app.post("/api/currency/token", (req,res)=>{
 		pass = req.body.pass;
 		if(pass && sha3(pass) == PASS){
 			res.end(jwt.sign({valute:req.body.valute}, PASS));
@@ -261,7 +261,7 @@ module.exports = async (app,db,PASS,filter)=>{
 			res.end("hackerman")
 		}
 	});
-	app.post("/api/valute/update", (req,res)=>{
+	app.post("/api/currency/update", (req,res)=>{
 		let tokenDec;
 		try {
 			tokenDec = jwt.verify(req.body.token, PASS);	
