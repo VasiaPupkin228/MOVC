@@ -33,7 +33,7 @@ let options = [
         </div>
         <script>
             document.getElementById("send").onclick = async ()=>{
-                let result = await fetch("/api/valute/token", {
+                let result = await fetch("/api/currency/token", {
                     method:"POST",
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8'
