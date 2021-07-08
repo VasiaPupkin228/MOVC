@@ -62,6 +62,19 @@ function replacespec(text){
     }   
 }
 
+function addVirtCurrencies(fx, valutes) {
+    for(let valute of valutes){
+        if(valute.type === "RUB"){
+            fx.rates[valute.idc] = (1/valute.amount);
+        } else{
+            fx.rates[valute.idc] = 1/fx(valute.amount).from(valute.type).to("RUB");
+        }
+    }
+    console.log(fx.rates);
+    return fx.rates
+}
+
 module.exports = {
-    replacespec
+    replacespec,
+    addVirtCurrencies
 }

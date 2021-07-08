@@ -12,6 +12,8 @@ module.exports = async (app,db,PASS,filter)=>{
 	let geo = db.collection("geo");
 	let valutes = db.collection("valutes");
     let cw = db.collection("clickwars");
+	fx.rates = utils.addVirtCurrencies(fx, await valutes.find({}).toArray());
+
 	app.get("/", (req,res)=>{
 		res.redirect("/countries")
 	});
