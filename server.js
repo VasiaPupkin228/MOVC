@@ -20,7 +20,8 @@ const URL = process.env.URL || require("./secure.json").url;
 const mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
 mongoClient.connect((err, client)=>{
     let db = client.db("movc");
-	require("./routes")(app, db, PASS, filter);
+    let skl = client.db("skl-bank");
+	require("./routes")(app, db, PASS, filter, skl);
 	require("./socket")(io,  db, PASS, filter);
 });
 

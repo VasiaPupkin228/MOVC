@@ -3,7 +3,7 @@ const utils = require("./utils");
 const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
 let fx = require("money");
-module.exports = async (app,db,PASS,filter)=>{
+module.exports = async (app,db,PASS,filter,skl)=>{
 	let cbr = (await (await fetch("https://www.cbr-xml-daily.ru/latest.js")).json());fx.base = cbr.base;fx.rates=cbr.rates;
 	let cachedvalutes = {};
     let co = db.collection("countries");
@@ -33,14 +33,20 @@ module.exports = async (app,db,PASS,filter)=>{
             res.render("pages/valutes", {valutes});
         });
     });
-	app.get('/currencies/:valute', (req, res)=>{
+	app.get('/currencies/:valute', async (req, res)=>{
         valutes.findOne({idc:req.params.valute}, async (err, valute)=>{
 			if(valute.course){
 				if(cachedvalutes[req.params.valute]){
 					valute.course = cachedvalutes[req.params.valute]
 				} else{
-					valute.course = await fetch(valute.course);
-					valute.course = await valute.course.text();
+					if(valute.idc==="SKL"){
+						let courseSKL = skl.collection("course");
+						let course = await courseSKL.find({}).toArray()
+						valute.course = JSON.stringify(course);
+					}else{
+						valute.course = await fetch(valute.course);
+						valute.course = await valute.course.text();
+					}
 					cachedvalutes[req.params.valute] = valute.course;
 				}
 			}
