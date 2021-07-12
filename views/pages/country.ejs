@@ -16,8 +16,8 @@
       <%- include("../components/menu") %> 
       <div class="container borderc" style="background-color: #f8f9fa;">
           <div class="row">
-            <div class="col-sm-12 col-md animate__backInLeft wow">
-              <img class="bordert" style="width: 100%;"src=<%= country.img %>>
+            <div class="col-sm-12 col-md animate__backInLeft wow" itemscope itemtype="http://schema.org/ImageObject">
+              <img class="bordert" style="width: 100%;"src=<%= country.img %> itemprop="contentUrl">
             </div>
             <div class="col animate__fadeInRight wow">
               <div class="row">
