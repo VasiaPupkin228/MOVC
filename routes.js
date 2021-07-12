@@ -285,6 +285,9 @@ module.exports = async (app,db,PASS,filter,skl)=>{
 		valutes.updateOne({idc:tokenDec.valute}, {$set:{amount:req.body.amount}});
 		res.end("updated");
 	});
+	app.get("/robots.txt", (req,res)=>{
+		res.sendFile(__dirname+"/robots.txt");
+	});
 	app.use((req, res)=>{
 		res.status(404);
 		res.render("pages/notfound")
