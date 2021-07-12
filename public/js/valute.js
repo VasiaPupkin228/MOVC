@@ -11,7 +11,7 @@ window.addEventListener("load",()=>{
             let amount = parseFloat($("#amount").val());
             let idc = $("#id").attr("content");
             let code = $("#code").val();
-            $("#coursetotal").html(fx(amount).from(idc).to(code).toFixed(3));
+            $("#coursetotal").html(amount+" "+idc+" = "+fx(amount).from(idc).to(code).toFixed(3)+" "+code);
         } catch{
             $("#coursetotal").html("Валюта для перевода не найдена");
         }
