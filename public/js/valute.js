@@ -5,7 +5,7 @@ window.addEventListener("load",()=>{
         let USD = parseFloat($("#USD").html())
         $("#RUB").html(fx(USD).from("USD").to("RUB").toFixed(3));
         $("#EUR").html(fx(USD).from("USD").to("EUR").toFixed(3));
-        Object.keys(course.rates).forEach((val)=>{
+        Object.keys(course.rates).sort((a, b) => a.localeCompare(b)).forEach((val)=>{
             $("#code").append(`<option>${val}</option>`);
             $("#fcode").append(`<option>${val}</option>`);
         });
