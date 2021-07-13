@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
 let fx = require("money");
 module.exports = async (app,db,PASS,filter,skl)=>{
-	let cbr = (await (await fetch("https://www.cbr-xml-daily.ru/latest.js")).json());fx.base = cbr.base;fx.rates=cbr.rates;
+	let cbr = (await (await fetch("https://www.cbr-xml-daily.ru/latest.js")).json());fx.base = cbr.base;fx.rates.USD=cbr.rates.USD;fx.rates.EUR=cbr.rates.EUR;
 	let cachedvalutes = {};
     let co = db.collection("countries");
 	let pending = db.collection("pending-countries");
