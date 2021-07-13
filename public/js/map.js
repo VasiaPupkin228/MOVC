@@ -92,7 +92,8 @@ window.onload = async ()=>{
                         onEachFeature: onEachFeature,
                         pointToLayer: cpoint,
                         style:{
-                                color: geo[i].properties.fill,
+                                fillColor: geo[i].properties.fill,
+                                color: geo[i].properties.stroke,
                                 weight: 5,
                                 opacity: 0.65
                         }
