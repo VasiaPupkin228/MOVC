@@ -84,15 +84,16 @@ window.onload = async ()=>{
                         body: JSON.stringify({idc:geo[i].properties.name||geo[i].properties.Name})
                 });
                 country = await country.json();
-                if(!country&&(geo[i].type==="Polygon")){
-                        console.log("Ошибка в получении: "+(geo[i].properties.name||geo[i].properties.Name));
+                if((!geo[i].properties.name)||(!country&&(geo[i].properties.type==="Polygon"))){
+                        console.error("Ошибка в получении: "+(geo[i].properties.name||geo[i].properties.Name));
                         continue;
                 }
                 L.geoJSON(geo[i],{
                         onEachFeature: onEachFeature,
                         pointToLayer: cpoint,
                         style:{
-                                color: geo[i].properties.fill,
+                                fillColor: geo[i].properties.fill,
+                                color: geo[i].properties.stroke,
                                 weight: 5,
                                 opacity: 0.65
                         }

@@ -7,7 +7,10 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "js-sha3": "^0.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "money": "^0.2.0",
     "mongodb": "^3.6.8",
+    "node-fetch": "^2.6.1",
     "serve-favicon": "^2.5.0",
     "socket.io": "^4.0.1"
   },

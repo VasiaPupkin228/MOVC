@@ -1,27 +1,60 @@
 const sha3 = require('js-sha3').sha3_224;
 const utils = require("./utils");
-module.exports = (app,db,PASS,filter)=>{
+const jwt = require("jsonwebtoken");
+const fetch = require("node-fetch");
+let fx = require("money");
+module.exports = async (app,db,PASS,filter,skl)=>{
+	let cbr = (await (await fetch("https://www.cbr-xml-daily.ru/latest.js")).json());fx.base = cbr.base;fx.rates.USD=cbr.rates.USD;fx.rates.EUR=cbr.rates.EUR;
+	let cachedvalutes = {};
     let co = db.collection("countries");
 	let pending = db.collection("pending-countries");
 	let deleted = db.collection("deleted-countries");
 	let geo = db.collection("geo");
 	let valutes = db.collection("valutes");
     let cw = db.collection("clickwars");
+	fx.rates = utils.addVirtCurrencies(fx, await valutes.find({}).toArray());
+
 	app.get("/", (req,res)=>{
 		res.redirect("/countries")
+	});
+	app.get("/courses", (req,res)=>{
+		res.end(JSON.stringify({
+			base:fx.base,
+			rates:fx.rates
+		}, null, "  "));
 	});
     app.get('/clickwars/:war', (req, res)=>{
         cw.findOne({name:req.params.war}, (err,val)=>{
             res.render("pages/clickwars", {war:val});
         });
     });
-	app.get('/valutes', (req, res)=>{
+	app.get('/currencies', (req, res)=>{
         valutes.find({}).toArray((err, valutes)=>{
             res.render("pages/valutes", {valutes});
         });
     });
-	app.get('/valutes/:valute', (req, res)=>{
-        valutes.findOne({idc:req.params.valute}, (err, valute)=>{
+	app.get('/currencies/:valute', async (req, res)=>{
+        valutes.findOne({idc:req.params.valute}, async (err, valute)=>{
+			if(valute.course){
+				if(cachedvalutes[req.params.valute]){
+					valute.course = cachedvalutes[req.params.valute]
+				} else{
+					if(valute.idc==="SKL"){
+						let courseSKL = skl.collection("course");
+						let course = await courseSKL.find({}).toArray()
+						valute.course = JSON.stringify(course);
+					}else{
+						valute.course = await fetch(valute.course);
+						valute.course = await valute.course.text();
+					}
+					cachedvalutes[req.params.valute] = valute.course;
+				}
+			}
+			if(valute.type !== "USD"){
+				valute.usd = fx(valute.amount).from(valute.type).to("USD").toFixed(3);
+			} else{
+				valute.usd = valute.amount
+			}
             res.render("pages/valute", valute);
         });
     });
@@ -70,6 +103,9 @@ module.exports = (app,db,PASS,filter)=>{
     });
 	app.get("/admin", (req,res)=>{
 		res.render("pages/admin");
+	});
+	app.get("/admin/currency-token", (req,res)=>{
+		res.render("pages/valute-token");
 	});
 	app.get("/admin/addcountry", (req,res)=>{
 		res.render("pages/addcountry");
@@ -230,6 +266,27 @@ module.exports = (app,db,PASS,filter)=>{
 		co.findOne({idc:req.body.idc}, (err, val)=>{
 			res.end(JSON.stringify(val, null, "  "));
 		});
+	});
+	app.post("/api/currency/token", (req,res)=>{
+		pass = req.body.pass;
+		if(pass && sha3(pass) == PASS){
+			res.end(jwt.sign({valute:req.body.valute}, PASS));
+		} else{
+			res.end("hackerman")
+		}
+	});
+	app.post("/api/currency/update", (req,res)=>{
+		let tokenDec;
+		try {
+			tokenDec = jwt.verify(req.body.token, PASS);	
+		} catch (error) {
+			return res.end("invalid token");
+		}
+		valutes.updateOne({idc:tokenDec.valute}, {$set:{amount:req.body.amount}});
+		res.end("updated");
+	});
+	app.get("/robots.txt", (req,res)=>{
+		res.sendFile(__dirname+"/robots.txt");
 	});
 	app.use((req, res)=>{
 		res.status(404);
