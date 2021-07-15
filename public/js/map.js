@@ -99,5 +99,6 @@ window.onload = async ()=>{
                         }
                 }).addTo(movc);
         }
+        document.getElementById("preloader").style.display = 'none';
         document.getElementById("map").classList.remove("ghost")
 }
