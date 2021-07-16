@@ -2,8 +2,10 @@ const sha3 = require('js-sha3').sha3_224;
 const utils = require("./utils");
 const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
+const Vkbot = require("./vk-logger");
 let fx = require("money");
-module.exports = async (app,db,PASS,filter,skl)=>{
+module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
+	const vklog = new Vkbot(VKTOKEN);
 	let cbr = (await (await fetch("https://www.cbr-xml-daily.ru/latest.js")).json());fx.base = cbr.base;fx.rates.USD=cbr.rates.USD;fx.rates.EUR=cbr.rates.EUR;
 	let cachedvalutes = {};
     let co = db.collection("countries");
@@ -252,6 +254,11 @@ module.exports = async (app,db,PASS,filter,skl)=>{
 					}));
 				} else{
 					res.redirect(`/pending-countries/${country.cidc}`);
+					if(country.oovg === "Да"){
+						vklog.oovgsend(`Государство ${country.name} хочет вступить в ООВГ\n Ссылка - artegoser.github.io/movc/?url=/pending-countries/${country.cidc}`);
+					} else{
+						vklog.movcsend(`Государство ${country.name} подало заявку в MOVC\n Ссылка - artegoser.github.io/movc/?url=/pending-countries/${country.cidc}`);
+					}
 				}
 			});
 		}

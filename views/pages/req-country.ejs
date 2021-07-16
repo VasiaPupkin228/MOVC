@@ -84,12 +84,21 @@ let options = [
     {
         title:"Сайт",
         id:"site",
-        help:"Ссылка"
+        help:"Ссылка на сайт государства"
     },
     {
-        title:"Страница в вк",
+        title:"Группа в вк",
         id:"vk",
-        help:"Ссылка"
+        help:"Ссылка на группу вк государства"
+    },
+    {
+        title:"Хочу вступить в ООВГ.",
+        id:"oovg",
+        type:"many",
+        types:[
+            "Да",
+            "Нет"
+        ]
     }
 ]
 %> 
@@ -108,7 +117,7 @@ let options = [
                 <%- include("../components/form", {options}) %> 
                 <div class="row m-5">
                     <input formaction="/country-preview" formtarget="_blank" type="submit" value="Предпросмотр" class="btn btn-primary mb-1">
-                    <input type="submit" value="Отправить" class="btn btn-dark">
+                    <input type="submit" value="Отправить" id="send" class="btn btn-dark">
                 </div>
             </form>
         </div>
