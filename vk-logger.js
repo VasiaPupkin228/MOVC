@@ -41,6 +41,7 @@ class Logger{
                     random_id:getRandomInt(0, 999),
                     message
                 });
+                break;
             }
         }
     }
