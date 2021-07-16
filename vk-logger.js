@@ -11,8 +11,8 @@ class Logger{
         this.vk = new VK({
             token:VKTOKEN
         });
-        this.oids = [410337158, 201089383, 372602695]
-        this.mids = [410337158, 372602695]
+        this.oids = [410337158, 201089383, 372602695];
+        this.mids = [410337158, 372602695];
     }
     oovgsend(message){
         for(let id of this.oids){
@@ -30,6 +30,18 @@ class Logger{
                 random_id:getRandomInt(0, 999),
                 message
             });
+        }
+    }
+    async convsend(message){
+        let conversations = await this.vk.api.messages.getConversations();
+        for(let it of conversations.items){
+            if(it.conversation.peer.type === "chat"){
+                this.vk.api.messages.send({
+                    peer_id:it.conversation.peer.id,
+                    random_id:getRandomInt(0, 999),
+                    message
+                });
+            }
         }
     }
 }

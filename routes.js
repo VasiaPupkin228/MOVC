@@ -199,6 +199,7 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 								}));
 							} else{
 								res.redirect(`/countries/${country.idc}`)
+								vklog.convsend(`Государство ${val.name} только что появилось в MOVC\n Посмотреть - artegoser.github.io/movc/?url=/countries/${country.idc}`);
 							}
 						});
 					}
