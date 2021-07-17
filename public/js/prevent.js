@@ -7,8 +7,7 @@ window.onload = ()=>{
         }
     };
     var img = document.getElementById("img");
-    img.oninput = imgp;
-    img.onpaste = imgp;
+    setInterval(imgp, 250);
     var rank = document.getElementById("rank");
     rank.oninput = function() {
         var regexp = /^[0-9]+$/i;
