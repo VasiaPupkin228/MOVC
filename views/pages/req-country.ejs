@@ -4,12 +4,14 @@ let options = [
     {
         title:"id страны*",
         help:"Можно использовать английские буквы и тире(-), напр: banana-republic",
-        id:"idc"
+        id:"idc",
+        required:true
     },
     {
         title:"Имя страны*",
         id:"name",
-        help:"Например Банановая республика"
+        help:"Например Банановая республика",
+        required:true
     },
     {
         title:"Ссылка на фото флага страны*",
@@ -19,7 +21,8 @@ let options = [
     {
         title:"Тип правления*",
         id:"type",
-        help:"Например монархия"
+        help:"Например монархия",
+        required:true
     },
     {
         title:"Описание*",
@@ -64,22 +67,26 @@ let options = [
         </div>
         Например Здесь все едят бананы
         `,
-        type:"area"
+        type:"area",
+        required:true
     },
     {
         title:"Правитель*",
         id:"owner",
-        help:"Например Бананов Бананоед"
+        help:"Например Бананов Бананоед",
+        required:true
     },
     {
         title:"Контакт правителя*",
         id:"contact",
-        help:"Например https://vk.com/example"
+        help:"Например https://vk.com/example",
+        required:true
     },
     {
         title:"Дата основания*",
         id:"date",
-        help:"Например 22.02.2021"
+        help:"Например 22.02.2021",
+        required:true
     },
     {
         title:"Сайт",

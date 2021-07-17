@@ -9,12 +9,19 @@ window.onload = ()=>{
     var img = document.getElementById("img");
     img.oninput = function() {
         var regexp = /^https?:\/\/\S+(?:jpg|jpeg|png)$/;
-        if(!regexp.test(img.value)) {
-            img.style.backgroundColor = "#ff8a8a"
-            document.getElementById("send").type = "не пиши сюда больше"
+        if(img.value){
+            if(!regexp.test(img.value)) {
+                    img.style.backgroundColor = "#ff8a8a";
+                    document.getElementById("send").disabled = true;
+                    document.getElementById("send").value = "Чтобы отправить заявку, заполните форму нормально";
+            } else{
+                img.style.backgroundColor = "white"
+                document.getElementById("send").disabled = false
+            }
         } else{
             img.style.backgroundColor = "white"
-            document.getElementById("send").type = "submit"
+            document.getElementById("send").disabled = false
+            document.getElementById("send").value = "Отправить";
         }
     }
     var rank = document.getElementById("rank");
