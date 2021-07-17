@@ -84,7 +84,7 @@ window.onload = async ()=>{
                         body: JSON.stringify({idc:geo[i].properties.name||geo[i].properties.Name})
                 });
                 country = await country.json();
-                if((!geo[i].properties.name)||(!country&&(geo[i].properties.type==="Polygon"))){
+                if((!geo[i].properties.name)||(!country&&(geo[i].geometry.type==="Polygon"))){
                         console.error("Ошибка в получении: "+(geo[i].properties.name||geo[i].properties.Name));
                         continue;
                 }
