@@ -72,9 +72,9 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 		});
     });
 	app.get('/countries', (req, res)=>{
-        co.find({}, {name:1, idc:1, description:1}).sort({rank:-1}).toArray((err, results)=>{
+        co.find(req.query.search ? {$text:{$search:req.query.search}} : {}, {name:1, idc:1, description:1}).sort({rank:-1}).toArray((err, results)=>{
 			co.countDocuments((_,v)=>{
-				res.render("pages/countries", {val:results, count:v});
+				res.render("pages/countries", {val:results, count:v, req});
 			});
 		});
     });

@@ -11,8 +11,16 @@
         <%- include("../components/menu") %> 
         <div class="container borderc" style="background-color: #f8f9fa;">
             <div class="alert alert-dark text-center" style="border-radius: 20px; padding: 5px;" role="alert">
-                Всего государств в индексации <%= count %> <a class="text-succes" href="/req-country">Подать заявку</a>
+                Всего государств в индексации <%= count %> <%- req.query.search ? "Найдено "+val.length  : "" %> <a class="text-succes" href="/req-country">Подать заявку</a>
             </div>
+            <form action="/countries" method="get">
+                <div class="input-group mb-3">
+                    <input type="text" name="search" class="form-control bordert" <%- req.query.search ? "value=\""+req.query.search+"\"" : "" %>  >
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary borderright" type="submit">Поиск</button>
+                    </div>
+                </div>
+            </form>
             <%
                 for(let i = 0; i<val.length; i++){
                     %>
