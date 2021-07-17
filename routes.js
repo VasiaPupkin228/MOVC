@@ -229,6 +229,7 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 		country = filter(country, (val)=>{
 			return val !== "";
 		});
+		country.srcdescription = country.description;
 		country.description = utils.replacespec(country.description);
 		if(country.description === false) delete country.description;
 		if(pass && sha3(pass) == PASS){
