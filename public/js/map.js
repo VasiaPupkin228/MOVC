@@ -76,17 +76,20 @@ window.onload = async ()=>{
                 }
                 document.getElementById("preloader").innerHTML = "Получаю: "+(geo[i].properties.name||geo[i].properties.Name);
                 console.log("Получаю: "+(geo[i].properties.name||geo[i].properties.Name));
-                let country = await fetch('/api/country', {
-                        method: 'POST',
-                        headers: {
-                                'Content-Type': 'application/json;charset=utf-8'
-                        },
-                        body: JSON.stringify({idc:geo[i].properties.name||geo[i].properties.Name})
-                });
-                country = await country.json();
-                if((!geo[i].properties.name)||(!country&&(geo[i].geometry.type==="Polygon"))){
-                        console.error("Ошибка в получении: "+(geo[i].properties.name||geo[i].properties.Name));
-                        continue;
+                let country;
+                if(geo[i].geometry.type==="Polygon"){
+                        country = await fetch('/api/country', {
+                                method: 'POST',
+                                headers: {
+                                        'Content-Type': 'application/json;charset=utf-8'
+                                },
+                                body: JSON.stringify({idc:geo[i].properties.name||geo[i].properties.Name})
+                        });
+                        country = await country.json();
+                        if((!geo[i].properties.name)||!country){
+                                console.error("Ошибка в получении: "+(geo[i].properties.name||geo[i].properties.Name));
+                                continue;
+                        }
                 }
                 L.geoJSON(geo[i],{
                         onEachFeature: onEachFeature,
