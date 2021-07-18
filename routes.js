@@ -72,7 +72,8 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 		});
     });
 	app.get('/countries', (req, res)=>{
-        co.find(req.query.search ? {$text:{$search:req.query.search}} : {}, {name:1, idc:1, description:1}).sort({rank:-1}).toArray((err, results)=>{
+        co.find(req.query.search ? {$or:[{description:{$regex:req.query.search, $options:"gi"}}, {name:{$regex:req.query.search, $options:"gi"}}, {owner:{$regex:req.query.search, $options:"gi"}}, {type:{$regex:req.query.search, $options:"gi"}}]} : {}, {name:1, idc:1, description:1}).sort({rank:-1}).toArray((err, results)=>{
+			if(err) throw err;
 			co.countDocuments((_,v)=>{
 				res.render("pages/countries", {val:results, count:v, req});
 			});
