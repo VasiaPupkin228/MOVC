@@ -7,7 +7,17 @@ window.onload = ()=>{
         }
     };
     var img = document.getElementById("img");
-    img.oninput = function() {
+    setInterval(imgp, 250);
+    var rank = document.getElementById("rank");
+    rank.oninput = function() {
+        var regexp = /^[0-9]+$/i;
+        if(!regexp.test(rank.value)) {
+            rank.value = rank.value.slice(0,-1);
+        }
+    };
+}
+
+function imgp() {
         var regexp = /^https?:\/\/\S+(?:jpg|jpeg|png)$/;
         if(img.value){
             if(!regexp.test(img.value)) {
@@ -24,11 +34,3 @@ window.onload = ()=>{
             document.getElementById("send").value = "Отправить";
         }
     }
-    var rank = document.getElementById("rank");
-    rank.oninput = function() {
-        var regexp = /^[0-9]+$/i;
-        if(!regexp.test(rank.value)) {
-            rank.value = rank.value.slice(0,-1);
-        }
-    };
-}
