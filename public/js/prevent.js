@@ -8,7 +8,7 @@ window.onload = ()=>{
     };
     var img = document.getElementById("img");
     img.oninput = function() {
-        var regexp = /^https?:\/\/\S+(?:jpg|jpeg|png)\?\S+$/;
+        var regexp = /^https?:\/\/\S+(?:.jpg|.jpeg|.png)\?\S+$/;
         if(img.value){
             if(!regexp.test(img.value)) {
                     img.style.backgroundColor = "#ff8a8a";
