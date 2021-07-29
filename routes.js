@@ -98,11 +98,10 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 		});
 	});
 	app.get('/geojs', async (req, res)=>{
-		res.header("Access-Control-Allow-Origin", "https://artegoser.github.io/geoMOVC");
 		res.redirect(`https://artegoser.github.io/geoMOVC/#data=data:text/x-url,https://movc.herokuapp.com/geo/${req.query.idc}`);
 	});
 	app.get('/geo/:country', async (req, res)=>{
-		res.header("Access-Control-Allow-Origin", "https://artegoser.github.io/geoMOVC");
+		res.header("Access-Control-Allow-Origin", "https://artegoser.github.io");
         let geo = await (await fetch("https://raw.githubusercontent.com/artegoser/MOVC/main/geo/geo.geojson")).json();
 		geo.features = geo.features.filter((val)=>{
 			if(val.properties.name===req.params.country) return true;
