@@ -88,6 +88,25 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 			}
 		});
     });
+	app.get('/geo', (req, res)=>{
+		res.redirect("https://raw.githubusercontent.com/artegoser/MOVC/main/geo/geo.geojson");
+    });
+	app.get('/getgeo', async (req, res)=>{
+		co.find({}).sort({rank:-1}).toArray((_,arr)=>{
+			arr = arr.map((val)=>val.idc)
+			res.render("pages/getgeo", {arr});
+		});
+	});
+	app.get('/geojs', async (req, res)=>{
+		res.redirect(`https://artegoser.github.io/geoMOVC/#data=data:text/x-url,https://movc.herokuapp.com/geo/${req.query.idc}`);
+	});
+	app.get('/geo/:country', async (req, res)=>{
+        let geo = await (await fetch("https://raw.githubusercontent.com/artegoser/MOVC/main/geo/geo.geojson")).json();
+		geo.features = geo.features.filter((val)=>{
+			if(val.properties.name===req.params.country) return true;
+		});
+		res.end(JSON.stringify(geo));
+    });
 	app.get('/pending-countries', (req, res)=>{
         pending.find({}, {name:1, cidc:1, description:1}).toArray((err, results)=>{
 			pending.countDocuments((_,v)=>{
