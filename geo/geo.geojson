@@ -12471,7 +12471,7 @@
         "description": "",
         "marker-color": "#7e7e7e",
         "name": "Vitsk",
-        "type-city": "city"
+        "type": "city"
       }
     },
     {
@@ -12490,7 +12490,7 @@
         "description": "",
         "marker-color": "#7e7e7e",
         "name": "Beljik",
-        "type-city": "city"
+        "type": "city"
       }
     },
     {
@@ -12509,7 +12509,7 @@
         "description": "",
         "marker-color": "#7e7e7e",
         "name": "Kalis",
-        "type-sity": "city"
+        "type": "city"
       }
     },
     {
@@ -12528,7 +12528,7 @@
         "description": "",
         "marker-color": "#7e7e7e",
         "name": "Radis",
-        "type-city": "capital"
+        "type": "capital"
       }
     }
   ]
