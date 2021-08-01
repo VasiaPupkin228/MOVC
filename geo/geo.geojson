@@ -12296,7 +12296,7 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "name": "Radis",
-        "type": "capital"
+        "type": "capital-city"
       },
       "geometry": {
         "type": "Point",
