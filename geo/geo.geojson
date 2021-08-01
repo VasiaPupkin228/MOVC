@@ -12262,7 +12262,7 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "name": "Vitsk",
-        "type-city": "city"
+        "type": "city"
       },
       "geometry": {
         "type": "Point",
@@ -12279,7 +12279,7 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "name": "Beljik",
-        "type-city": "city"
+        "type": "city"
       },
       "geometry": {
         "type": "Point",
@@ -12295,108 +12295,32 @@
         "marker-color": "#7e7e7e",
         "marker-size": "medium",
         "marker-symbol": "",
-        "name": "Radis",
-        "type-city": "capital"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          47.705039978027344,
-          -15.879946184039
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#7e7e7e",
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "name": "Kalis",
-        "type-city": "city"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          49.40205216407776,
-          -13.069330634196495
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 2,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          49.47220802307129,
-          -17.65618833265176
-        ]
-      },
-      "properties": {
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "description": "",
-        "marker-color": "#7e7e7e",
-        "name": "Vitsk",
-        "type": "city"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 3,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          44.46467399597168,
-          -17.541260716671523
-        ]
-      },
-      "properties": {
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "description": "",
-        "marker-color": "#7e7e7e",
-        "name": "Beljik",
-        "type": "city"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 4,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          49.40205216407776,
-          -13.069330634196495
-        ]
-      },
-      "properties": {
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "description": "",
-        "marker-color": "#7e7e7e",
-        "name": "Kalis",
-        "type": "city"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 5,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          47.705039978027344,
-          -15.879946184039
-        ]
-      },
-      "properties": {
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "description": "",
-        "marker-color": "#7e7e7e",
         "name": "Radis",
         "type": "capital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.705039978027344,
+          -15.879946184039
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Kalis",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          49.40205216407776,
+          -13.069330634196495
+        ]
       }
     }
   ]
