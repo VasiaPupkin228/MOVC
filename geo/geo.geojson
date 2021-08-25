@@ -9529,12 +9529,24 @@
               47.46754288453167
             ],
             [
-              65.8740234375,
-              55.81362907119958
+              54.31091308593749,
+              46.800646994424035
             ],
             [
-              67.1044921875,
-              57.326521225217064
+              55.469970703125,
+              46.30899569419859
+            ],
+            [
+              65.478515625,
+              49.85215166776998
+            ],
+            [
+              68.18115234375,
+              55.65279803318956
+            ],
+            [
+              68.7744140625,
+              57.362089861548945
             ],
             [
               67.5,
@@ -18009,6 +18021,91 @@
               -12.144060709747615
             ]
           ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "type": "city",
+        "name": "Олидолиум"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.87841796875,
+          56.63206372054474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "type": "city",
+        "name": "Градлион"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.24725341796875,
+          58.01173545198743
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "type": "city",
+        "name": "Скалодилум"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          60.6060791015625,
+          56.835451877125536
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "type": "city",
+        "name": "Метеоридиум"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.41357421874999,
+          55.175730853115766
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "type": "city",
+        "name": "Бераклидолион"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.92315673828125,
+          54.7277924107821
         ]
       }
     }
