@@ -3459,7 +3459,8 @@
         "marker-color": "#7e7e7e",
         "marker-size": "medium",
         "marker-symbol": "circle-stroked",
-        "name": "Файфельштадт"
+        "name": "Файфельштадт",
+        "type": "city"
       },
       "geometry": {
         "type": "Point",
@@ -3475,7 +3476,8 @@
         "marker-color": "#7e7e7e",
         "marker-size": "medium",
         "marker-symbol": "circle-stroked",
-        "name": "Аугенцбург"
+        "name": "Аугенцбург",
+        "type": "city"
       },
       "geometry": {
         "type": "Point",
