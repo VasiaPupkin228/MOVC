@@ -13,7 +13,7 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 	let deleted = db.collection("deleted-countries");
 	let geo = db.collection("geo");
 	let valutes = db.collection("valutes");
-    let cw = db.collection("clickwars");
+	let ads = db.collection("ads");
 	fx.rates = utils.addVirtCurrencies(fx, await valutes.find({}).toArray());
 
 	app.get("/", (req,res)=>{
@@ -25,11 +25,16 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 			rates:fx.rates
 		}, null, "  "));
 	});
-    app.get('/clickwars/:war', (req, res)=>{
-        cw.findOne({name:req.params.war}, (err,val)=>{
-            res.render("pages/clickwars", {war:val});
+
+	app.get('/ads/:type', (req, res)=>{
+        ads.find({type:req.params.type}).toArray((err, ads)=>{
+            switch(req.params.type){
+				case "ncimg":
+					res.render("pages/ads/ncimg", {ads});
+			}
         });
     });
+
 	app.get('/currencies', (req, res)=>{
         valutes.find({}).toArray((err, valutes)=>{
             res.render("pages/valutes", {valutes});
