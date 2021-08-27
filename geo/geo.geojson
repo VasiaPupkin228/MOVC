@@ -18639,7 +18639,8 @@
         "stroke-width": 2,
         "stroke-opacity": 1,
         "fill": "#09aa1c",
-        "fill-opacity": 0.5
+        "fill-opacity": 0.5,
+        "name": "slingonia"
       },
       "geometry": {
         "type": "Polygon",
