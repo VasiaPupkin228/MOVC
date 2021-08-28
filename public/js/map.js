@@ -3,6 +3,10 @@ function loginfo(...str) {
      console.log(`%c ${info} `, "color:white; background-color: #78d6fa; border-radius:10px;", ...str)   
 }
 
+function onMapClick(e) {
+        loginfo("Даблклик", e.latlng.toString())
+}
+
 window.onload = async ()=>{
         document.getElementById("map").style.height = document.documentElement.scrollHeight-document.getElementById("menu").scrollHeight+"px";
         document.getElementById("map").style.width = document.documentElement.scrollWidth+"px";
@@ -11,6 +15,7 @@ window.onload = async ()=>{
                 document.getElementById("map").style.width = document.documentElement.scrollWidth+"px";
         }, false);
         let movc = L.map('map').setView([53.19, 41.28], 6);
+        movc.on('dblclick', onMapClick);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 maxZoom: 11,
                 id: 'artegoser/ckql6k3xd2yqw17n2awmke9d5',
