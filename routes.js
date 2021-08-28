@@ -302,6 +302,12 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 			res.end(JSON.stringify(val, null, "  "));
 		});
 	});
+	app.get("/api/countries", (req,res)=>{
+		co.find({}).sort({rank:-1}).toArray((err, val)=>{
+			res.writeHead(200, {'Content-Type': 'text/json; charset=utf-8'});
+			res.end(JSON.stringify(val, null, "  "));
+		});
+	});
 	app.post("/api/currency/token", (req,res)=>{
 		pass = req.body.pass;
 		if(pass && sha3(pass) == PASS){

@@ -15,7 +15,13 @@ window.onload = async ()=>{
         }).addTo(movc);
         var popup = L.popup();
         
+        console.log("Получаю карту");
         let geo = await fetch("https://raw.githubusercontent.com/artegoser/MOVC/main/geo/geo.geojson");
+        console.log("Получаю Страны MOVC");
+        let coarray = await fetch("/api/countries");
+        coarray = await coarray.json();
+        let countries = {};
+        for(let i = 0; i<coarray.length; i++) countries[coarray[i].idc] = coarray[i]; 
         geo = (await geo.json()).features;
         document.getElementById("map").classList.add("ghost");
         for(let i = 0; i<geo.length; i++){
@@ -78,14 +84,7 @@ window.onload = async ()=>{
                 console.log("Получаю: "+(geo[i].properties.name||geo[i].properties.Name));
                 let country;
                 if(geo[i].geometry.type==="Polygon"){
-                        country = await fetch('/api/country', {
-                                method: 'POST',
-                                headers: {
-                                        'Content-Type': 'application/json;charset=utf-8'
-                                },
-                                body: JSON.stringify({idc:geo[i].properties.name||geo[i].properties.Name})
-                        });
-                        country = await country.json();
+                        country = countries[geo[i].properties.name]
                         if((!geo[i].properties.name)||!country){
                                 console.error("Ошибка в получении: "+(geo[i].properties.name||geo[i].properties.Name));
                                 continue;
