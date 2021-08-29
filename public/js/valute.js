@@ -19,6 +19,6 @@ window.addEventListener("load",()=>{
         } catch{
             $("#coursetotal").html("Валюта для перевода не найдена");
         }
-        window.scrollTo(0, document.body.scrollHeight);
+        window.scrollTo(0, 0);
     });
 });
