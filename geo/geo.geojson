@@ -4,6 +4,125 @@
     {
       "type": "Feature",
       "properties": {
+        "marker-color": "#000000",
+        "marker-size": "large",
+        "marker-symbol": "",
+        "name": "Берёзовск",
+        "type": "capital-city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.274566650390625,
+          53.34604250191485
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#000000",
+        "marker-size": "large",
+        "marker-symbol": "",
+        "name": "Налинск",
+        "type ": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7030792236328125,
+          40.416894177003456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#000000",
+        "marker-size": "small",
+        "marker-symbol": "",
+        "name": "Маленький",
+        "type ": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.849090576171874,
+          53.17064968295498
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#000000",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Санкт-Сарба",
+        "type ": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.6143302917480464,
+          51.49987377454688
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#000000",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Кун",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.522247314453125,
+          54.236340214413424
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#000000",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Тэканбург",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.470115661621094,
+          51.89852871012711
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#000000",
+        "marker-size": "small",
+        "marker-symbol": "",
+        "name": "Новый",
+        "type ": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1090316772460933,
+          49.18669641723863
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "stroke": "#ff5353",
         "stroke-width": 2,
         "stroke-opacity": 1,
