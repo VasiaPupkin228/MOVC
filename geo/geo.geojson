@@ -442,7 +442,8 @@
         "stroke-width": 2,
         "stroke-opacity": 1,
         "fill": "#3921ea",
-        "fill-opacity": 0.5
+        "fill-opacity": 0.5,
+        "name": "Zeitland"
       },
       "geometry": {
         "type": "Polygon",
@@ -519,7 +520,8 @@
         "stroke-width": 2,
         "stroke-opacity": 1,
         "fill": "#3921ea",
-        "fill-opacity": 0.5
+        "fill-opacity": 0.5,
+        "name": "Zeitland"
       },
       "geometry": {
         "type": "Polygon",
