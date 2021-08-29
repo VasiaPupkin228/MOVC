@@ -1109,7 +1109,7 @@
         "marker-size": "large",
         "marker-symbol": "",
         "name": "Налинск",
-        "type ": "city"
+        "type": "city"
       },
       "geometry": {
         "type": "Point",
@@ -1126,7 +1126,7 @@
         "marker-size": "small",
         "marker-symbol": "",
         "name": "Маленький",
-        "type ": "city"
+        "type": "city"
       },
       "geometry": {
         "type": "Point",
@@ -1143,7 +1143,7 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "name": "Санкт-Сарба",
-        "type ": "city"
+        "type": "city"
       },
       "geometry": {
         "type": "Point",
@@ -1194,7 +1194,7 @@
         "marker-size": "small",
         "marker-symbol": "",
         "name": "Новый",
-        "type ": "city"
+        "type": "city"
       },
       "geometry": {
         "type": "Point",
