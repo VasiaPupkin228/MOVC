@@ -235,6 +235,9 @@ module.exports = async (app,db,PASS,filter,skl, VKTOKEN)=>{
 			res.end("Hackerman?");
 		}
 	});
+	app.get("/currencyedit", (req,res)=>{
+		res.render("pages/currencyedit")
+	});
 	app.post('/addcountry', (req, res)=>{
 		let country = req.body || false;
 		if(!country||!country.idc){
