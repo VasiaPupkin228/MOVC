@@ -94,22 +94,46 @@ window.onload = async ()=>{
                 loginfo("Получаю:", (geo[i].properties.name||geo[i].properties.Name));
                 let country;
                 if(geo[i].geometry.type==="Polygon"){
-                        country = countries[geo[i].properties.name]
-                        if((!geo[i].properties.name)||!country){
+                        country = countries[geo[i].properties.name];
+                        if(((!geo[i].properties.name)||!country)&&!geo[i].properties.type){
                                 console.error("Ошибка в получении: "+(geo[i].properties.name||geo[i].properties.Name));
                                 continue;
                         }
                 }
-                L.geoJSON(geo[i],{
-                        onEachFeature: onEachFeature,
-                        pointToLayer: cpoint,
-                        style:{
-                                fillColor: geo[i].properties.fill,
-                                color: geo[i].properties.stroke,
-                                weight: 5,
-                                opacity: 0.65
-                        }
-                }).addTo(movc);
+                if(geo[i].properties.type === "sand"){
+                        L.geoJSON(geo[i],{
+                                onEachFeature: onEachFeature,
+                                pointToLayer: cpoint,
+                                style:{
+                                        fillColor: "#efe9e1",
+                                        color: "#efe9e1",
+                                        weight: 0,
+                                        fillOpacity: 1
+                                }
+                        }).addTo(movc);
+                } else if(geo[i].properties.type === "grass"){
+                        L.geoJSON(geo[i],{
+                                onEachFeature: onEachFeature,
+                                pointToLayer: cpoint,
+                                style:{
+                                        fillColor: "#d1e6be",
+                                        color: "#d1e6be",
+                                        weight: 0,
+                                        fillOpacity: 1
+                                }
+                        }).addTo(movc);
+                } else{
+                        L.geoJSON(geo[i],{
+                                onEachFeature: onEachFeature,
+                                pointToLayer: cpoint,
+                                style:{
+                                        fillColor: geo[i].properties.fill,
+                                        color: geo[i].properties.stroke,
+                                        weight: 5,
+                                        opacity: 0.65
+                                }
+                        }).addTo(movc);
+                }
         }
         document.getElementById("preloader").style.display = 'none';
         document.getElementById("map").classList.remove("ghost")
