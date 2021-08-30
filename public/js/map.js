@@ -102,8 +102,6 @@ window.onload = async ()=>{
                 }
                 if(geo[i].properties.type === "sand"){
                         L.geoJSON(geo[i],{
-                                onEachFeature: onEachFeature,
-                                pointToLayer: cpoint,
                                 style:{
                                         fillColor: "#efe9e1",
                                         color: "#efe9e1",
@@ -113,8 +111,6 @@ window.onload = async ()=>{
                         }).addTo(movc);
                 } else if(geo[i].properties.type === "grass"){
                         L.geoJSON(geo[i],{
-                                onEachFeature: onEachFeature,
-                                pointToLayer: cpoint,
                                 style:{
                                         fillColor: "#d1e6be",
                                         color: "#d1e6be",
