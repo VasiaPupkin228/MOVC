@@ -4,6 +4,60 @@
     {
       "type": "Feature",
       "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Волсаш",
+        "type": "capital-city",
+        "amount": 8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.55126953125,
+          47.08508535995386
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Скотланд",
+        "type": "city",
+        "amount": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.35400390625,
+          46.70973594407157
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Йанктон",
+        "type": "city",
+        "amount": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.803955078125,
+          48.004625021133904
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "stroke": "#5769c7",
         "stroke-width": 2,
         "stroke-opacity": 1,
