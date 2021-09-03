@@ -21837,6 +21837,40 @@
           35.28668535084858
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Центродилиум",
+        "type": "capital-city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.360328674316406,
+          35.17465021826492
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Дипломатический остров",
+        "type": "landmark"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.183074951171875,
+          34.880579891049635
+        ]
+      }
     }
   ]
 }
