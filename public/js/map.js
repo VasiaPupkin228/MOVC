@@ -2,6 +2,14 @@ function loginfo(...str) {
      let info = str.shift();
      console.log(`%c ${info} `, "color:white; background-color: #78d6fa; border-radius:10px;", ...str)   
 }
+function logmarker(...str) {
+        let info = str.shift();
+        console.log(`%c ${info} `, "color:white; background-color: #9300fc; border-radius:10px;", ...str)   
+}
+function logland(...str) {
+        let info = str.shift();
+        console.log(`%c ${info} `, "color:white; background-color: #0c7700; border-radius:10px;", ...str)   
+}
 
 function onMapClick(e) {
         loginfo("Даблклик", e.latlng.toString())
@@ -27,7 +35,7 @@ window.onload = async ()=>{
         
         loginfo("Получаю карту");
         let geo = await fetch("https://raw.githubusercontent.com/artegoser/MOVC/main/geo/geo.geojson");
-        loginfo("Получаю Страны MOVC");
+        loginfo("Получаю страны MOVC");
         let coarray = await fetch("/api/countries");
         coarray = await coarray.json();
         let countries = {};
@@ -87,11 +95,27 @@ window.onload = async ()=>{
                                     permanent: false, 
                                     direction: 'top'
                                 });
+                        } else if(feature.properties.type==="landmark"){
+                                let myIcon = L.icon({
+                                        iconSize:     [16, 16],
+                                        iconUrl: 'https://artegoser.github.io/movc/icons/landmark.png',
+                                });
+                                return L.marker(latlng, { icon: myIcon }).bindTooltip(feature.properties.name, 
+                                {
+                                    permanent: false, 
+                                    direction: 'top'
+                                });
                         }
                         return L.marker(latlng)
                 }
                 document.getElementById("preloader").innerHTML = "Получаю: "+(geo[i].properties.name||geo[i].properties.Name);
-                loginfo("Получаю:", (geo[i].properties.name||geo[i].properties.Name));
+                if(geo[i].properties.type==="city"||geo[i].properties.type==="capital-city"||geo[i].properties.type==="landmark"){
+                        logmarker("Получаю маркер:", (geo[i].properties.name||geo[i].properties.Name));
+                } else if(geo[i].properties.type==="sand"||geo[i].properties.type==="grass"){
+                        logland("Получаю кусок земли:", (geo[i].properties.name||geo[i].properties.Name));
+                } else{
+                        loginfo("Получаю страну:", (geo[i].properties.name||geo[i].properties.Name));
+                }
                 let country;
                 if(geo[i].geometry.type==="Polygon"){
                         country = countries[geo[i].properties.name];
