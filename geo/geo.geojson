@@ -3100,7 +3100,8 @@
         "stroke-width": 2,
         "stroke-opacity": 1,
         "fill": "#96a0ff",
-        "fill-opacity": 0.5
+        "fill-opacity": 0.5,
+        "name": "severniy-vevr"
       },
       "geometry": {
         "type": "Polygon",
@@ -7149,7 +7150,8 @@
         "stroke-opacity": 1,
         "fill": "#555555",
         "fill-opacity": 0.5,
-        "type": "sand"
+        "type": "sand",
+        "name": "Слингонский полуостров"
       },
       "geometry": {
         "type": "Polygon",
