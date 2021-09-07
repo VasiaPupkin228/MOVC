@@ -4,6 +4,91 @@
     {
       "type": "Feature",
       "properties": {
+        "marker-color": "#000000",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Хотокава",
+        "type": "capital-city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.756591796875,
+          44.879228141635245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#000000",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Конфорко",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.427734375,
+          36.60670888641815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#030303",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Фанна",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.9658203125,
+          35.39800594715108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#000000",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Конфорко",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.7568359375,
+          39.36827914916014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#000000",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Казекагэ",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.76171875,
+          23.885837699862005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "stroke": "#ce2c2c",
         "stroke-width": 2,
         "stroke-opacity": 1,
