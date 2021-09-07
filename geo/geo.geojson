@@ -4,6 +4,238 @@
     {
       "type": "Feature",
       "properties": {
+        "stroke": "#ce2c2c",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#db1414",
+        "fill-opacity": 0.5,
+        "name": "karelia"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.7275390625,
+              69.52683366454718
+            ],
+            [
+              28.388671875,
+              71.08118190900726
+            ],
+            [
+              27.6416015625,
+              68.71246485443844
+            ],
+            [
+              28.894042968749996,
+              65.41258878751255
+            ],
+            [
+              28.4326171875,
+              61.49124866199968
+            ],
+            [
+              35.859375,
+              64.79284777557432
+            ],
+            [
+              35.09033203125,
+              65.20146842127558
+            ],
+            [
+              37.177734375,
+              65.72159355655066
+            ],
+            [
+              41.37451171875,
+              66.46943736242143
+            ],
+            [
+              41.94580078125,
+              67.67608458198097
+            ],
+            [
+              35.7275390625,
+              69.52683366454718
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Залупинск",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.420654296875,
+          67.15716352923295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Толомна",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.7177734375,
+          68.35464707908535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Восточный",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.034912109375,
+          67.35678538806071
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Северный",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.223388671874996,
+          69.39578308847753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Костомушка",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.59761047363281,
+          64.58795280159033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Западный",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.1961669921875,
+          65.96437717203096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Николайград",
+        "type": "capital-city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.07708740234375,
+          68.97022145813169
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name ": "Новый Николайград",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.812042236328125,
+          68.81840829393288
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Александрия",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.76058959960937,
+          62.60187335856871
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Южный",
+        "type": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.878593444824215,
+          61.86926319688453
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "stroke": "#ff5353",
         "stroke-width": 2,
         "stroke-opacity": 1,
