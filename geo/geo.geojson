@@ -2411,44 +2411,6 @@
     {
       "type": "Feature",
       "properties": {
-        "stroke": "#ffffff",
-        "stroke-width": 2,
-        "stroke-opacity": 1,
-        "fill": "#ff5555",
-        "fill-opacity": 0.5,
-        "name": "Talonsk"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              56.25257056206465,
-              -85.05112918473107
-            ],
-            [
-              56.252570897340775,
-              -85.05112918473107
-            ],
-            [
-              56.252570897340775,
-              -85.05112875088341
-            ],
-            [
-              56.25257056206465,
-              -85.05112875088341
-            ],
-            [
-              56.25257056206465,
-              -85.05112918473107
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "stroke": "#637a0f",
         "stroke-width": 2,
         "stroke-opacity": 1,
